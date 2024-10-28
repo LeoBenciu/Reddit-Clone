@@ -1,0 +1,43 @@
+.li{
+    color: white;
+    display: flex;
+    flex-direction: row;
+    gap: 1px;
+    align-items: center;
+    padding: 0 15px;
+    border-radius: 8px;
+}
+
+.li:hover{
+    background-color:#191c1e ;
+}
+
+.handleDropdown{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%; 
+    width: 100%; 
+    color: #979EA1;
+    background-color: #0F1113;
+    border: none;
+    padding: 0 15px;
+    border-radius: 8px;
+}
+
+.handleDropdown:hover{
+    background-color: #191c1e;
+}
+
+.arrowIcon{
+    color: white;
+    width: 15px;
+    height: 15px;
+    transform: rotate(180deg);
+    transition: transform 0.3s ease;
+}
+
+.arrowDown{
+    transform: rotate(0deg);
+}

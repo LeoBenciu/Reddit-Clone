@@ -1,0 +1,13 @@
+.horizontal-line{
+    height: 1px;
+    background-color: #393B3C;
+}
+
+.hole{
+    width: 265px; 
+    border-right: solid 1px #393B3C; 
+    padding: 20px; 
+    gap: 15px;
+    display: flex;
+    flex-direction: column;
+}

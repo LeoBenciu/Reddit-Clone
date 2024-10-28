@@ -1,3 +1,7 @@
 *{
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+ul{
+  margin: 0;
+  padding: 0;
+}

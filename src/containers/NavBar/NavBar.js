@@ -13,7 +13,7 @@ function NavBar() {
       justifyContent: 'space-between',
       padding: '0.3rem 2rem',
       height: '50px',
-      borderBottom: 'solid 1px #393B3C'
+      borderBottom: 'solid 1px #393B3C',
     }}>
       <Logo/>
 
@@ -27,7 +27,7 @@ function NavBar() {
       }}>
         <Button style={{backgroundColor: '#2B3236'}} text="Get app" icon={faQrcode}/>
         <Button style={{backgroundColor: '#149EF5'}} text="Log In"/>
-        <Button style={{backgroundColor: 'transparent'}} icon={faEllipsis}/>
+        <Button style={{backgroundColor: '#0F1113'}} icon={faEllipsis}/>
       </div>
     </div>
   )
