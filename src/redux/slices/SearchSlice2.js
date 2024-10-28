@@ -45,7 +45,7 @@ const SearchSlice = createSlice({
             state.searchType = action.payload;
         }
     }
-})
+});
 
 export const {setSearchQuery, setSearchType, fetchSearchResults, fetchMoreSearchResults, clearSearchResults, setLoading, setLoadingMore, setError} = SearchSlice.actions;
 export default SearchSlice.reducer;

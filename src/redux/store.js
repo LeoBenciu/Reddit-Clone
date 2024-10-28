@@ -6,7 +6,7 @@ import FeedSlice from './slices/FeedSlice';
 import CommentsSlice from './slices/CommentsSlice';
 import SubredditsSlice from './slices/SubredditsSlice';
 import NotificationsSlice from './slices/NotificationsSlice';
-import SearchSlice from 'Users/test/Desktop/Projects/RedditClone/reddit-clone/src/redux/slices/SearchSlice.js';
+import SearchSlice from './slices/SearchSlice2';
 
 
 const store = configureStore({

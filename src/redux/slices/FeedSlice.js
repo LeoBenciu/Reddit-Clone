@@ -45,4 +45,6 @@ const FeedSlice = createSlice({
 })
 
 export const { fetchFeed, fetchMoreFeed, setLoading, setLoadingMore, setError, likePostInFeed, refreshFeed} = FeedSlice.actions;
+export const selectFeed = (state) => state.feed.feed;
+export const selectLoading = (state) => state.feed.loading;
 export default FeedSlice.reducer;
