@@ -1,0 +1,15 @@
+.btn {
+    color: white;
+    display: flex;
+    flex-direction: row;
+    gap: 1px;
+    align-items: center;
+    padding: 0 15px;
+    border-radius: 8px;
+    border: none;
+    background-color: #2B3236;
+  }
+
+.btn:hover {
+    cursor: pointer;
+}

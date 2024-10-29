@@ -5,7 +5,7 @@ import Logo from '../../components/logo/logo';
 import { faQrcode, faEllipsis } from '@fortawesome/free-solid-svg-icons';
 
 
-function NavBar() {
+function NavBar({handleOpenLoginPopup, handleOpenGetAppPopup}) {
   return (
     <div id='NavBar' style={{
       display: 'flex', 
@@ -25,8 +25,8 @@ function NavBar() {
         alignItems: 'center',
         gap: '8px'
       }}>
-        <Button style={{backgroundColor: '#2B3236'}} text="Get app" icon={faQrcode}/>
-        <Button style={{backgroundColor: '#149EF5'}} text="Log In"/>
+        <Button style={{backgroundColor: '#2B3236'}} text="Get app" icon={faQrcode} onClick={handleOpenGetAppPopup}/>
+        <Button style={{backgroundColor: '#149EF5'}} text="Log In" onClick={handleOpenLoginPopup}/>
         <Button style={{backgroundColor: '#0F1113'}} icon={faEllipsis}/>
       </div>
     </div>
