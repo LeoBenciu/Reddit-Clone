@@ -4,7 +4,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: rgba(0, 0, 0, 0.2);
     z-index: 999;
     display: flex;
 }
@@ -12,16 +12,70 @@
 .popupContent{
     display: flex;
     flex-direction: column;
-    width: 600px;
+    width: 550px;
     height: 500px;
     background-color: #181C1F;
     margin: auto;
     padding: 20px;
     overflow: hidden;
+    border-radius: 15px;
 }
 
 .popupHeader{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 230px;
+    margin: 0 auto;
+    text-align: center;
+    color: white;
+}
+
+.storeButtons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.storeButtons img {
+    max-width: 130px;
+    height: auto;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.storeButtons img:hover {
+    transform: scale(1.05);
+}
+
+.iconX{
+    width: 50%;
+    height: 50%;
+    color: white;
+}
+
+.buttonX{
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    border: none;
+    background-color: #2B3236;
+    display: flex;
+    justify-content: center;
+    align-items: center
+}
+
+.buttonX:hover{
+    cursor: pointer;
+    filter: brightness(1.2);
 }

@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     isSideBarOpen: false,
-    isModalOpen: false,
+    isSecondaryOpen: false,
     modalType: null,
     notification:{
         message: '',
@@ -25,13 +25,8 @@ const UiSlice = createSlice({
         toggleSideBar:(state)=>{
             state.isSideBarOpen = !state.isSideBarOpen;
         },
-        openModal:(state,action)=>{
-            state.isModalOpen = true;
-            state.modalType = action.payload;
-        },
-        closeModal:(state)=>{
-            state.isModalOpen = false;
-            state.modalType = null;
+        toggleSecondary: (state)=>{
+            state.isSecondaryOpen = !state.isSecondaryOpen;
         },
         setNotification:(state,action)=>{
             const { mess, tip} = action.payload;
@@ -64,5 +59,5 @@ const UiSlice = createSlice({
     }
 })
 
-export const {toggleSideBar, openModal, openPopup, closePopup, closeModal, setNotification, clearNotification, setTheme, toggleLoadingSpinner, setCurrentPage} = UiSlice.actions;
+export const {toggleSideBar, openPopup, closePopup, setNotification, clearNotification, setTheme, toggleLoadingSpinner, setCurrentPage, toggleSecondary} = UiSlice.actions;
 export default UiSlice.reducer;

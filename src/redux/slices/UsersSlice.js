@@ -5,7 +5,9 @@ const initialState = {
     error: null,
     currentUser: null,
     selectedUser: null,
-    isAuthenticated: false
+    isAuthenticated: false,
+    emailOrUsername: '',
+    password: '',
 };
 
 const UsersSlice = createSlice({
@@ -37,9 +39,19 @@ const UsersSlice = createSlice({
         logoutUser: (state)=>{
             state.currentUser = null;
             state.isAuthenticated = false;
+        },
+        updateUserOrEmail: (state,action)=>{
+            state.emailOrUsername = action.payload;
+        },
+        updatePassword: (state,action)=>{
+            state.password = action.payload;
+        },
+        clearInputFields: (state)=>{
+            state.password = '';
+            state.emailOrUsername = '';
         }
     }
 })
 
-export const {registerUser, setLoading, setError, changePassword,updateUserProfile,logoutUser} = UsersSlice.actions;
+export const {registerUser, setLoading, setError, changePassword,updateUserProfile,logoutUser, updatePassword, updateUserOrEmail, clearInputFields} = UsersSlice.actions;
 export default UsersSlice.reducer;

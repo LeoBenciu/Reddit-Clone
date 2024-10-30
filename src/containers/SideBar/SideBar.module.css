@@ -13,3 +13,7 @@
     flex-direction: column;
     overflow: scroll;
 }
+
+.hole::-webkit-scrollbar{
+    display: none;
+}

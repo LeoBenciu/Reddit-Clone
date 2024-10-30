@@ -5,6 +5,8 @@ import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { useDispatch } from 'react-redux';
 import { closePopup } from '../../redux/slices/UiSlice';
 import photo from '../../resources/photo.png'
+import googlePlayBadge from '../../resources/googlePlayBadge.svg'
+import appStoreBadge from '../../resources/appStoreBadge.webp'
 
 const GetAppPopup = () => {
 
@@ -21,9 +23,25 @@ const GetAppPopup = () => {
         <div className={styles.popupHeader}>
             <h2 style={{
                 color: 'white',
-                fontSize: '30px'
+                fontSize: '30px',
+                margin: '0'
             }}>Get the Reddit app</h2>
-            <button onClick={handleGetAppPopupClose}><FontAwesomeIcon icon={faXmark}/></button>
+
+            <button onClick={handleGetAppPopupClose} className={styles.buttonX} style={{
+                borderRadius: '50%',
+                width: '40px',
+                height: '40px',
+                border: 'none',
+                backgroundColor: '#2B3236',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center'
+            }}><FontAwesomeIcon icon={faXmark} className={styles.iconX} style={{
+                width: '50%',
+                height: '50%',
+                color: 'white',
+
+            }}/></button>
         </div>
 
         <div className={styles.content}>
@@ -33,14 +51,15 @@ const GetAppPopup = () => {
                 height: '200px'
             }}/>
             <p>Or check it out in the app stores</p>
-            <div>
-                <button>
+            <div className={styles.storeButtons}>
+                <a href="https://apps.apple.com/app/reddit/id1064216828" target="_blank" rel="noopener noreferrer">
+                    <img src={appStoreBadge} alt="Download on the App Store" style={{ width: '150px', marginRight: '10px' }} />
+                </a>
 
-                </button>
-
-                <button>
-
-                </button>
+                
+                <a href="https://play.google.com/store/apps/details?id=com.reddit.frontpage" target="_blank" rel="noopener noreferrer">
+                    <img src={googlePlayBadge} alt="Get it on Google Play" style={{ width: '150px' }} />
+                </a>
             </div>
         </div>
 

@@ -6,11 +6,13 @@ import { useDispatch, useSelector } from 'react-redux'
 import { openPopup } from '../../redux/slices/UiSlice'
 import LoginPopup from '../LoginPopup/LoginPopup'
 import GetAppPopup from '../GetAppPopup/GetAppPopup1'
+import styles from './Layout.module.css'
 
 const Layout = () => {
   const dispatch = useDispatch();
   const isGetAppPopupOpen = useSelector((state)=>state.ui.popups['getAppPopup']);
-  const isLoginPopupOpen = useSelector((state)=>state.ui.popups['loginPopup'])
+  const isLoginPopupOpen = useSelector((state)=>state.ui.popups['loginPopup']);
+  const isUserLoggedIn = useSelector((state)=>state.user.isAuthenticated);
 
   const handleOpenLoginPopup = () =>{
     dispatch(openPopup('loginPopup'));
@@ -20,17 +22,18 @@ const Layout = () => {
     dispatch(openPopup('getAppPopup'));
   }
 
+
   return (
     <div id='Layout' style={{backgroundColor: '#0F1113', height: '100vh', maxHeight: '100vh', position: 'relative'}}>
-      <NavBar handleOpenGetAppPopup={handleOpenGetAppPopup} handleOpenLoginPopup={handleOpenLoginPopup}/>
+      <NavBar handleOpenGetAppPopup={handleOpenGetAppPopup} handleOpenLoginPopup={handleOpenLoginPopup} isUserLoggedIn={isUserLoggedIn}/>
 
       {isGetAppPopupOpen&& <GetAppPopup/>}
 
-      {isLoginPopupOpen&& <LoginPopup/>}
+      {isLoginPopupOpen&& <LoginPopup isUserLoggedIn={isUserLoggedIn}/>}
 
       <div style={{display: 'flex', flexDirection: 'row', height: '100%'}}>
         <SideBar />
-        <div style={{ flex: 1, overflow: 'auto' }}>
+        <div style={{ flex: 1, overflow: 'auto', display: 'flex', justifyContent: 'center',  }} className={styles.Content}>
           <Outlet />
         </div>
       </div>
