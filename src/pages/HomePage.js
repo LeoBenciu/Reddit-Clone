@@ -6,7 +6,7 @@ import SecondaryHomepage from '../containers/ SecondaryHomePage/SecondaryHomepag
 
 const HomePage = () => {
   return (
-    <div className='HomePage' style={{width: '1100px', padding: '0', boxSizing: 'border-box', height: '100%'}}>
+    <div className='HomePage' style={{width: '1100px', padding: '0', boxSizing: 'border-box', height: 'max-content'}}>
       <CardsCarousel/>
 
       <div style={{display: 'flex', flexDirection: "row", height: '100%', paddingTop:'5px'}}>

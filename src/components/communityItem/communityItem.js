@@ -1,8 +1,9 @@
 import React from 'react'
+import styles from './communityItem.module.css'
 
 const CommunityItem = ({name, members, image}) => {
   return (
-    <div className='CommunityItem' style={{display: 'flex', flexDirection: 'row', height: '50px', alignItems:'center', gap:'10px', padding: '28px 0'}}>
+    <div className={styles.CommunityItem} style={{display: 'flex', flexDirection: 'row', height: '50px', alignItems:'center', gap:'10px', padding: '28px 15px'}}>
       <img style={{width: '33px', height: '33px', borderRadius: '50%', border: 'none'}} src={image}></img>
 
       <div className='data'>

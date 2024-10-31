@@ -33,7 +33,7 @@ const Layout = () => {
 
       <div style={{display: 'flex', flexDirection: 'row', height: '100%'}}>
         <SideBar />
-        <div style={{ flex: 1, overflow: 'auto', display: 'flex', justifyContent: 'center',  }} className={styles.Content}>
+        <div style={{ flex: 1, overflow: 'auto', display: 'flex', justifyContent: 'center', height: '100%' }} className={styles.Content}>
           <Outlet />
         </div>
       </div>

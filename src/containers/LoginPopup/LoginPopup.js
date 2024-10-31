@@ -20,6 +20,7 @@ const LoginPopup = ({isUserLoggedIn}) => {
     const isFormFilled = emailOrUsername.trim() !== '' && password.trim() !== '';
 
     const handleLoginPopupClose = ()=>{
+        dispatch(clearInputFields());
         dispatch(closePopup('loginPopup'))
     }
 

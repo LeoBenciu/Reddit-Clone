@@ -1,0 +1,20 @@
+.PostContent{
+    width: 100%;
+
+}
+
+.title{
+    margin: 0;
+}
+.description{
+    margin: 0;
+}
+.images{
+
+}
+.link{
+
+}
+.video{
+    height: max-content;
+}
