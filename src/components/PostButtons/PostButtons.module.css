@@ -1,0 +1,82 @@
+.postButtons{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    background-color: #23282b;
+    border-radius: 30px;
+    color: white;
+    font-size: 12px;
+    font-weight: 600;
+}
+.upButton{
+    background-color: transparent;
+    border: none;
+    color: white;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    margin-right: 2px;
+}
+
+.upButton:hover{
+    background-color: #363a3d;
+    cursor: pointer;
+}
+
+.downButton{
+    background-color: transparent;
+    border: none;
+    color: white;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    margin-left: 2px;
+}
+
+.downButton:hover{
+    background-color: #363a3d;
+    cursor: pointer;
+}
+
+.commentsButton{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    text-align: center;
+    background-color: #23282b;
+    border-radius: 30px;
+    color: white;
+    border: none;
+    gap: 5px;
+    padding: 0 15px;
+    font-weight: 600;
+}
+
+.commentsButton:hover{
+    background-color: #363a3d;
+    cursor: pointer;
+}
+
+.shareButton{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    text-align: center;
+    background-color: #23282b;
+    border-radius: 30px;
+    color: white;
+    border: none;
+    gap: 5px;
+    padding: 0 15px;
+    font-weight: 600;
+}
+
+.shareButton:hover{
+    background-color: #363a3d;
+    cursor: pointer;
+}

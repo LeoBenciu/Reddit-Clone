@@ -17,9 +17,71 @@ border-radius: 50%;
 }
 
 .subredditName{
-
+margin: 0;
+color: #BFD1DB;
+font-size: 12px;
 }
 
 .posted{
+margin: 0;
+color: #979EA1;
+font-size: 12px;
 
+}
+
+.buttonJoin{
+    background-color: #FF914D;
+    border-radius: 20px;
+    padding: 4px 12px;
+    border: none;
+    color: white;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.buttonJoin:hover{
+    cursor: pointer;
+    filter: brightness(1.2);
+}
+
+.buttonMore{
+    position: relative;
+    background-color: transparent;
+    border: none;
+    color: white;
+    margin-left: 5px;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+}
+
+.buttonMore:hover{
+    background-color: #23282b;
+    cursor: pointer;
+}
+
+.pop{
+   position: absolute;
+    top: 35px;
+    right: 0;
+    background-color: #23282b;
+    box-shadow: 0 0 15px black;
+    border-radius: 10px;
+}
+
+.moreButtons{
+    width: 123.5px;
+    height: 40px;
+    background-color: transparent;
+    border: none;
+    color: white;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.moreButtons:hover{
+    cursor: pointer;
+    background-color: #303538;
 }

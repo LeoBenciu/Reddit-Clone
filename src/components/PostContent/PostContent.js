@@ -1,13 +1,13 @@
 import React from 'react'
 import styles from './PostContent.module.css'
 
-const PostContent = () => {
+const PostContent = ({title, description, media, linkTo}) => {
   return (
     <div className={styles.PostContent}>
-      <h2 className={styles.title}></h2>
-      <p className={styles.description}></p>
+      <h2 className={styles.title}>{title}</h2>
+      <p className={styles.description}>{description}</p>
       <img className={styles.images}></img>
-      <link className={styles.link}></link>
+      <a href={linkTo} target="_blank" className={styles.linkTo}>{linkTo}</a>
       <video className={styles.video}></video>
     </div>
   )

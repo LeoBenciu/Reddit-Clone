@@ -7,15 +7,12 @@ const initialState = {
     notification:{
         message: '',
         type: '',
-        isVisble: false
+        isVisible: false
     },
     theme: 'light',
     isLoading: false,
     currentPage: 'home',
-    popups: {
-        loginPopup: false,
-        getAppPopup: false,
-    },
+    popups: {},
 };
 
 const UiSlice = createSlice({
@@ -55,9 +52,13 @@ const UiSlice = createSlice({
         closePopup: (state,action)=>{
             const popId = action.payload;
             state.popups[popId] = false;
-        }
+        },
+        togglePopup: (state,action)=>{
+            const popId = action.payload;
+            state.popups[popId] = !state.popups[popId];
+        },
     }
 })
 
-export const {toggleSideBar, openPopup, closePopup, setNotification, clearNotification, setTheme, toggleLoadingSpinner, setCurrentPage, toggleSecondary} = UiSlice.actions;
+export const {toggleSideBar, openPopup, closePopup, setNotification, clearNotification, setTheme, toggleLoadingSpinner, setCurrentPage, toggleSecondary, togglePopup} = UiSlice.actions;
 export default UiSlice.reducer;

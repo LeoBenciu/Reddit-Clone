@@ -14,6 +14,7 @@ const Layout = () => {
   const isLoginPopupOpen = useSelector((state)=>state.ui.popups['loginPopup']);
   const isUserLoggedIn = useSelector((state)=>state.user.isAuthenticated);
 
+
   const handleOpenLoginPopup = () =>{
     dispatch(openPopup('loginPopup'));
   }

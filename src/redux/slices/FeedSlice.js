@@ -1,7 +1,19 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+
+export const fetchTheFeed = createAsyncThunk(
+    'feed/fetchFeed',
+     async () =>{
+        const response = await fetch('https://www.reddit.com/r/popular/top.json?limit=30');
+        const data = await response.json();
+        const posts = data.data.children.map((post)=>post.data);
+        console.log(`FetchedFeed:`, posts);
+        return posts;
+    }
+)
 
 const initialState = {
     feed: [],
+    status: 'idle',
     loading: false,
     loadingMore: false,
     error: null
@@ -40,9 +52,28 @@ const FeedSlice = createSlice({
             if (post){
                 post.isLiked= true;
             }
-        }
+        }},
+    extraReducers: (builder)=> {
+        builder
+            .addCase(fetchTheFeed.pending, (state)=>{
+                state.status = 'loading';
+            })
+            .addCase(fetchTheFeed.rejected, (state,action)=>{
+                state.status = 'failed';
+                state.error = action.error.message;
+            })
+            .addCase(fetchTheFeed.fulfilled, (state,action)=>{
+                state.status = 'fulfilled';
+                const shuffledPosts = [...action.payload];
+                for (let i = shuffledPosts.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffledPosts[i], shuffledPosts[j]] = [shuffledPosts[j], shuffledPosts[i]];
+                };
+                state.feed = action.payload;
+            })
+    },
     }
-})
+)
 
 export const { fetchFeed, fetchMoreFeed, setLoading, setLoadingMore, setError, likePostInFeed, refreshFeed} = FeedSlice.actions;
 export const selectFeed = (state) => state.feed.feed;

@@ -1,39 +1,34 @@
-import React, { useRef } from 'react'
+import React, { useEffect, useRef } from 'react'
 import styles from './SecondaryHomePage.module.css'
 import CommunityItem from '../../components/communityItem/communityItem'
-import poza from '../../resources/photo.png'
-import photo from '../../resources/poza.jpeg'
 import { useDispatch, useSelector} from 'react-redux'
 import { toggleSecondary } from '../../redux/slices/UiSlice'
+import  {fetchTheSubreddits}  from '../../redux/slices/SubredditsSlice'
 
 const SecondaryHomepage = () => {
 
     const communitiesListRef = useRef(null);
     const dispatch = useDispatch();
     const isSecondaryOpen = useSelector((state)=> state.ui.isSecondaryOpen);
+    const {subreddits, error, status} = useSelector(state=> state.subreddits);
 
     const handleClick = ()=>{
         communitiesListRef.current.scrollTo({top:0})
         dispatch(toggleSecondary());
     }
 
-    const communities = [
-        {name: 'r/AskMen', members: '19000', icon: poza},
-        {name: 'r/apple', members: '1243', icon: photo},
-        {name: 'r/PS4', members: '3423423', icon: poza},
-        {name: 'r/PS4', members: '3423423', icon: photo},
-        {name: 'r/PS4', members: '3423423', icon: photo},
-        {name: 'r/PS4', members: '3423423', icon: photo},
-        {name: 'r/PS4', members: '3423423', icon: photo},
-        {name: 'r/PS4', members: '3423423', icon: photo},
-        {name: 'r/PS4', members: '3423423', icon: photo},
-        {name: 'r/PS4', members: '3423423', icon: photo},
-        {name: 'r/PS4', members: '3423423', icon: photo},
-        {name: 'r/PS4', members: '3423423', icon: photo},
-        {name: 'r/PS4', members: '3423423', icon: photo},
-        {name: 'r/PS4', members: '3423423', icon: photo},
-        {name: 'r/PS4', members: '3423423', icon: photo},
-    ]
+    useEffect(()=>{
+      if(status === 'idle'){
+        dispatch(fetchTheSubreddits());
+      }
+    },[dispatch,status])
+
+    if(status=== 'loading'){
+      return <p>Loading...</p>
+    }
+    if(status=== 'error'){
+      return <p>Error: {error}</p>
+    }
 
   return (
     <div  className='content' style={{height: '100%', width: '100%', display:'flex', flexDirection: 'column'}}>
@@ -42,8 +37,8 @@ const SecondaryHomepage = () => {
       </div>
 
       <div ref={communitiesListRef} className={styles.listOfCommunities} style={{height: isSecondaryOpen ? '750px': '300px', overflowY: isSecondaryOpen? 'scroll': 'hidden'}}>
-        {communities.map((community,index)=>(
-            <CommunityItem key={index} name={community.name} image={community.icon} members={community.members}/>
+        {subreddits.map((subreddit,index)=>(
+            <CommunityItem key={subreddit} name={subreddit} image={subreddit} members={subreddit}/>
         ))}
       </div>
 

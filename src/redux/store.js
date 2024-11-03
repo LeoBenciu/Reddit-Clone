@@ -7,6 +7,7 @@ import CommentsSlice from './slices/CommentsSlice';
 import SubredditsSlice from './slices/SubredditsSlice';
 import NotificationsSlice from './slices/NotificationsSlice';
 import SearchSlice from './slices/SearchSlice2';
+import PopularSlice from './slices/PopularSlice';
 
 
 const store = configureStore({
@@ -19,6 +20,7 @@ const store = configureStore({
         feed: FeedSlice,
         notifications: NotificationsSlice,
         search: SearchSlice,
+        popular: PopularSlice,
     },
 });
 
