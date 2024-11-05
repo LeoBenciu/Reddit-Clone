@@ -5,8 +5,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEllipsis, faEyeSlash, faFlag, faSave } from '@fortawesome/free-solid-svg-icons';
 import { useDispatch, useSelector } from 'react-redux';
 import { closePopup, openPopup } from '../../redux/slices/UiSlice';
+import { formatDistanceToNowStrict } from '../../../node_modules/date-fns/formatDistanceToNowStrict';
 
-const PostUpper = ({ subreddit, posted, id }) => {
+const PostUpper = ({ subreddit, posted, id, user }) => {
   const dispatch = useDispatch();
   const popId = `postPop-${id}`;
   const isPopVisible = useSelector((state) => state.ui.popups[popId]);
@@ -38,6 +39,9 @@ const PostUpper = ({ subreddit, posted, id }) => {
     };
   }, [isPopVisible]);
 
+  const date = new Date(posted * 1000);
+  const timeAgo = formatDistanceToNowStrict(date, {addSuffix: true});
+
   return (
     <div
       className="BigRow"
@@ -51,10 +55,10 @@ const PostUpper = ({ subreddit, posted, id }) => {
     >
       <div className={styles.row}>
         <img className={styles.subredditImage} src={poza} alt="Subreddit" />
-        <h4 className={styles.subredditName}>{subreddit}</h4>
+        <h4 className={styles.subredditName}>{`u/${user}`}</h4>
         <p className={styles.posted}>
           <span style={{ color: 'transparent' }}>..</span>•<span style={{ color: 'transparent' }}>..</span>
-          {posted}
+          {timeAgo}
         </p>
       </div>
       <div className={styles.row}>

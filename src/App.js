@@ -8,6 +8,7 @@ import MoviesAndTvPage from './pages/MoviesAndTvPage';
 import PopCulturePage from './pages/PopCulturePage';
 import QAndAsPage from './pages/QAndAsPage';
 import TechnologyPage from './pages/TechnologyPage';
+import SubredditPage from './pages/SubredditPage';
 
 
 function App() {
@@ -21,6 +22,8 @@ function App() {
         <Route path='Technology' element={<TechnologyPage/>}/>
         <Route path='Pop-Culture' element={<PopCulturePage/>}/>
         <Route path='Movies&TV' element={<MoviesAndTvPage/>}/>
+
+        <Route path='r/:subredditName' element={<SubredditPage/>}/>
       </Route>
     </Routes>
   );

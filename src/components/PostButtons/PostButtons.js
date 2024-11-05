@@ -3,7 +3,19 @@ import styles from './PostButtons.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowDown, faArrowUp, faComment, faShare } from '@fortawesome/free-solid-svg-icons'
 
-const PostButtons = ({upVotesMinusDownVotes, numberOfComments}) => {
+const PostButtons = ({upVotesMinusDownVotes, numberOfComments,link}) => {
+  const [isCopied, setIsCopied] = useState(false);
+
+  const handleCopyLink = async () => {
+    try {
+      await navigator.clipboard.writeText(link);
+      setIsCopied(true);
+
+      setTimeout(() => setIsCopied(false), 2000);
+    } catch (err) {
+      console.error("Failed to copy link: ", err);
+    }
+  };
 
   function format (element){
     if(element>999999){
@@ -19,6 +31,8 @@ const PostButtons = ({upVotesMinusDownVotes, numberOfComments}) => {
   var formattedComments = format(numberOfComments);
   var formattedVotes = format(upVotesMinusDownVotes);
 
+  
+
 
   return (
     <div  className='PostButtons' style={{display: 'flex', flexDirection: 'row', justifyContent:'start', gap: '15px'}}>
@@ -29,7 +43,7 @@ const PostButtons = ({upVotesMinusDownVotes, numberOfComments}) => {
         <button className={styles.downButton}><FontAwesomeIcon icon={faArrowDown} style={{width: '16px', height: '16px'}}/></button>
       </div>
       <button className={styles.commentsButton}><FontAwesomeIcon icon={faComment} style={{width: '16px', height: '16px'}}/>{formattedComments}</button>
-      <button className={styles.shareButton}><FontAwesomeIcon icon={faShare} style={{width: '16px', height: '16px'}}/>Share</button>
+      <button className={styles.shareButton} onClick={handleCopyLink}>{isCopied? ('Link Copied') : (<><FontAwesomeIcon icon={faShare} style={{width: '16px', height: '16px'}}/>Share </>)}</button>
 
     </div>
   )

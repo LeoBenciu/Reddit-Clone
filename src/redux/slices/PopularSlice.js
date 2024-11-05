@@ -3,7 +3,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 export const fetchPopularCarousel = createAsyncThunk(
     'popular/fetchPopular',
     async () =>{
-        const response = await fetch('https://www.reddit.com/r/popular/top.json?limit=6');
+        const response = await fetch('https://www.reddit.com/r/popular/hot.json?limit=12');
         const data = await response.json();
         const posts = data.data.children.map((post)=>post.data);
         console.log('Transformed Posts:', posts);

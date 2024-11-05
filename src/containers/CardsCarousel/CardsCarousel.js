@@ -53,6 +53,9 @@ const CardsCarousel = () => {
         return <p>Error: {error}</p>
     }
 
+    const filteredPosts = posts.filter(post => 
+        post.preview?.images?.[0]?.resolutions?.[2]?.url
+    );
 
   return (
     <div className={styles.CarouselContainer}>
@@ -62,20 +65,19 @@ const CardsCarousel = () => {
             onClick={handleScrollLeft}><FontAwesomeIcon style={{width: '21px', height: '21px'}} icon={faAngleLeft}/></button>)
         }
 
-        <ul ref={carouselRef} className={styles.Carousel}>
-        {posts.map((post, index)=>{
+            <ul ref={carouselRef} className={styles.Carousel}>
+            {filteredPosts.map((post, index) => {
+                if(filteredPosts){
+                const imageUrl = post.preview.images[0].resolutions[2].url.replace(/&amp;/g, '&') ?? 'default-image-url';
+                return (
+                <li key={post.id} className={styles.Card}>
+                    <Card title={post.title} picture={imageUrl} />
+                </li>
+                );
+            }
+            })}
+            </ul>
 
-                const imageUrl = post.preview?.images?.[0]?.resolutions?.[2]?.url?.replace(
-                    /&amp;/g,
-                    '&'
-                ) || 'path/to/default-image.jpg';
-
-            
-        return(<li key={index} className={styles.Card}>
-                <Card title={post.title} picture={imageUrl} paragraph='{}'/>
-                </li>)
-        })}
-        </ul>
 
         {scrollPosition < maxScrollPosition&&(
             <button style={{right: '0',

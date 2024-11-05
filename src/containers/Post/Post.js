@@ -4,23 +4,22 @@ import PostUpper from '../../components/PostUpper/PostUpper';
 import PostContent from '../../components/PostContent/PostContent';
 import styles from './Post.module.css'
 
-const Post = ({numberOfComments, upVotesMinusDownVotes, posted, subreddit, title, description, media, linkTo,id}) => {
+const Post = ({numberOfComments, upVotesMinusDownVotes, posted, subreddit, title, selfText, images, user, image, video, linkTo,id}) => {
 
-  const unixTimestamp = posted;
-  const date = new Date(unixTimestamp* 1000);
-  console.log(date);
 
   return (
     <div className={styles.Post} >
-      <PostUpper posted={posted} subreddit={subreddit} id={id}></PostUpper>
+      <PostUpper posted={posted} subreddit={subreddit} id={id} user={user}></PostUpper>
       <PostContent 
       title={title} 
-      description={description} 
-      media={media}
-      linkTo={linkTo}></PostContent>
+      selfText={selfText} 
+      video={video}
+      images={images}
+      image={image}></PostContent>
       <PostButtons 
       upVotesMinusDownVotes={upVotesMinusDownVotes} 
-      numberOfComments={numberOfComments}></PostButtons>
+      numberOfComments={numberOfComments}
+      linkTo={linkTo}></PostButtons>
     </div>
   )
 }

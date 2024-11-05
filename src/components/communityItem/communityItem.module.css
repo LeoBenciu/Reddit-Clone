@@ -2,3 +2,7 @@
     background-color: #181919;
     cursor: pointer;
 }
+
+.linkTo{
+    text-decoration: none;
+}

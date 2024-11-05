@@ -1,9 +1,8 @@
 import React, { useEffect } from 'react'
 import Post from '../Post/Post';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchTheFeed } from '../../redux/slices/FeedSlice';
 
-const Feed = ({content}) => {
+const FeedGeneral = ({fetchTheFeed}) => {
 
   const dispatch = useDispatch();
   const { feed, error, status} = useSelector((state)=>state.feed);
@@ -12,9 +11,9 @@ const Feed = ({content}) => {
   console.log(postWithMetadata);
 
   useEffect(()=>{
-      dispatch(fetchTheFeed(content));
+      dispatch(fetchTheFeed());
     
-  },[dispatch,content]);
+  },[dispatch,status]);
 
   if(status === 'loading'){
     return <p>Loading...</p>
@@ -40,7 +39,7 @@ const Feed = ({content}) => {
   
   
   return (
-    <div className='Feed' style={{flex: '2.5', height:'100%', marginRight: '15px', marginBottom: '100px', minWidth: '756px', maxWidth: '756px'}}>
+    <div className='Feed' style={{flex: '2.5', height:'100%', marginRight: '15px', marginBottom: '100px'}}>
       {feed.map((post,index)=>{
         const imageUrls = extractImageUrls(post.media_metadata);
 
@@ -57,7 +56,6 @@ const Feed = ({content}) => {
           subreddit={`r/${post.subreddit}`} 
           title={post.title} 
           images = {imageUrls} 
-          user={post.author}
           image={(post.media_metadata || post.media) ? null : post.url}
           video={post.media?.reddit_video ? post.media.reddit_video.fallback_url : ''}
           id={post.id}
@@ -70,4 +68,4 @@ const Feed = ({content}) => {
   )
 }
 
-export default Feed;
+export default FeedGeneral;

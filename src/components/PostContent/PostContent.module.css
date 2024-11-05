@@ -15,8 +15,51 @@
     font-size: 14px;
 }
 .images{
-    margin-bottom: 8px;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
 }
+
+.containerImage {
+    position: relative;
+    width: 725px;
+    min-height: 440px;
+    max-height: 540px;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+    border-radius: 15px;
+    z-index: 0;
+  }
+  
+  .containerImage::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+      linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+      var(--background-image);
+    background-size: cover;
+    background-position: center;
+    filter: blur(24px);
+    z-index: -1;
+    border-radius: 15px;
+  }
+  
+  
+
+.image{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
 .linkTo{
     font-size: 14px;
     color: #6483fc;
@@ -31,3 +74,54 @@
 .video{
     margin-bottom: 8px;
 }
+
+.selfText{
+    color: #A8C8CB;
+    font-size: 14px;
+    margin-bottom: 16px;
+}
+
+  
+
+
+
+
+
+
+  .imageWrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .arrowButton {
+    background-color: rgba(0, 0, 0, 0.6);
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    z-index: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    border-radius: 50%;
+    border: none;
+  }
+  
+  .arrowButton:focus {
+    outline: none;
+  }
+  
+  .arrowButton:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+    cursor: pointer;
+  }
+  
+  .arrowButton:nth-child(1) {
+    left: 10px;
+  }
+  
+  .arrowButton:nth-child(3) {
+    right: 10px;
+  }
+  

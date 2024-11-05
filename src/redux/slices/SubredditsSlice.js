@@ -3,7 +3,10 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 export const fetchTheSubreddits = createAsyncThunk(
     'subreddits/fetchSubreddits',
     async ()=>{
-        const response = await fetch('https://www.reddit.com/best/communities/1/top.json?limit=15');
+        const response = await fetch('https://www.reddit.com/subreddits/popular.json?limit=50');
+        if(!response.ok){
+            throw new Error('Network response was not ok');
+        }
         const data = await response.json();
         const subreddits = data.data.children.map((subreddit)=> subreddit.data);
         console.log('SUBREDDITS:',subreddits);

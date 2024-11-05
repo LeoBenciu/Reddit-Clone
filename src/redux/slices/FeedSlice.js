@@ -2,21 +2,22 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 export const fetchTheFeed = createAsyncThunk(
     'feed/fetchFeed',
-     async () =>{
-        const response = await fetch('https://www.reddit.com/r/popular/top.json?limit=30');
+     async (content = 'r/popular') =>{
+        const response = await fetch(`https://www.reddit.com/${content}/new.json?limit=30`);
         const data = await response.json();
         const posts = data.data.children.map((post)=>post.data);
-        console.log(`FetchedFeed:`, posts);
+        console.log(`FetchedFeed for ${content}:`, posts);
         return posts;
     }
 )
 
 const initialState = {
     feed: [],
+    currentContent: 'r/popular',
     status: 'idle',
     loading: false,
     loadingMore: false,
-    error: null
+    error: null,
 };
 
 const FeedSlice = createSlice({
@@ -45,14 +46,18 @@ const FeedSlice = createSlice({
             state.loadingMore = action.payload;
         },
         setError:(state,action)=>{
-            state.loading = action.payload;
+            state.error = action.payload;
         },
         likePostInFeed:(state,action)=>{
             const post = state.feed.find(post=> post.id === action.payload);
             if (post){
                 post.isLiked= true;
             }
-        }},
+        },
+        setCurrentContent: (state, action) => {
+            state.currentContent = action.payload;
+          },
+        },
     extraReducers: (builder)=> {
         builder
             .addCase(fetchTheFeed.pending, (state)=>{
@@ -69,13 +74,15 @@ const FeedSlice = createSlice({
                 const j = Math.floor(Math.random() * (i + 1));
                 [shuffledPosts[i], shuffledPosts[j]] = [shuffledPosts[j], shuffledPosts[i]];
                 };
-                state.feed = action.payload;
+                state.feed = shuffledPosts;
+                state.currentContent = action.meta.arg;
             })
     },
     }
 )
 
-export const { fetchFeed, fetchMoreFeed, setLoading, setLoadingMore, setError, likePostInFeed, refreshFeed} = FeedSlice.actions;
+export const { fetchFeed, fetchMoreFeed, setLoading, setLoadingMore, setError, likePostInFeed, refreshFeed, setCurrentContent} = FeedSlice.actions;
 export const selectFeed = (state) => state.feed.feed;
 export const selectLoading = (state) => state.feed.loading;
+export const selectCurrentContent = (state)=> state.feed.currentContent;
 export default FeedSlice.reducer;

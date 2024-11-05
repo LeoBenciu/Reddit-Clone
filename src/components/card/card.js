@@ -1,6 +1,14 @@
 import React from 'react';
 
-const Card = ({ title, picture, paragraph }) => {
+const Card = ({ title, picture, paragraph, maxTitleLength=45 }) => {
+
+      const truncateTitle = (str, max) => {
+        if (str.length <= max) return str;
+        return str.slice(0, max) + '...';
+      };
+
+      const displayedTitle = truncateTitle(title, maxTitleLength);
+
   return (
     <div
       className="Card"
@@ -34,7 +42,7 @@ const Card = ({ title, picture, paragraph }) => {
       ></div>
 
       <div style={{ position: 'relative', zIndex: 2 }}>
-        <h3 style={{ margin: '0' }}>{title}</h3>
+        <h3 style={{ margin: '0' }}>{displayedTitle}</h3>
         <p style={{ margin: '0', fontSize: '14px' }}>{paragraph}</p>
       </div>
     </div>
