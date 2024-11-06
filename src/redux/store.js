@@ -8,6 +8,7 @@ import SubredditsSlice from './slices/SubredditsSlice';
 import NotificationsSlice from './slices/NotificationsSlice';
 import SearchSlice from './slices/SearchSlice2';
 import PopularSlice from './slices/PopularSlice';
+import SubredditDetailsSlice from './slices/SubredditDetailsSlice';
 
 
 const store = configureStore({
@@ -17,6 +18,7 @@ const store = configureStore({
         user: UsersSlice,
         comments: CommentsSlice,
         subreddits: SubredditsSlice,
+        subredditDetails: SubredditDetailsSlice,
         feed: FeedSlice,
         notifications: NotificationsSlice,
         search: SearchSlice,

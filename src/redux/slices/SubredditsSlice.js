@@ -26,11 +26,6 @@ const SubredditsSlice = createSlice({
     name:'SubredditsSlice',
     initialState,
     reducers:{
-        fetchSubreddits:(state,action)=>{
-            state.subreddits = action.payload;
-            state.loading = false;
-            state.error = null;
-        },
         subscribeToSubreddit:(state,action)=>{
             const subreddit = state.subreddits.find(subreddit=>subreddit.id === action.payload);
             if (subreddit){
@@ -45,7 +40,7 @@ const SubredditsSlice = createSlice({
             const subreddit = state.subreddits.find(subreddit=>subreddit.id === action.payload);
             if (subreddit){
                 subreddit.isSubscribed = false;
-                state.subscribedSubreddits.filter(subre=> subre.id !== subreddit.id);
+                state.subscribedSubreddits = state.subscribedSubreddits.filter(subre => subre.id !== subreddit.id);
             }
         }
     },
@@ -65,5 +60,5 @@ const SubredditsSlice = createSlice({
     },
 })
 
-export const {fetchSubreddits, setError, setLoading, subscribeToSubreddit, unsubscribeFromSubreddit} = SubredditsSlice.actions;
+export const { subscribeToSubreddit, unsubscribeFromSubreddit} = SubredditsSlice.actions;
 export default SubredditsSlice.reducer;
