@@ -6,12 +6,25 @@ import { faEllipsis, faEyeSlash, faFlag, faSave } from '@fortawesome/free-solid-
 import { useDispatch, useSelector } from 'react-redux';
 import { closePopup, openPopup } from '../../redux/slices/UiSlice';
 import { formatDistanceToNowStrict } from '../../../node_modules/date-fns/formatDistanceToNowStrict';
+import { hidePost, toggleReport, toggleSave } from '../../redux/slices/FeedSlice';
 
-const PostUpper = ({ subreddit, posted, id, user }) => {
+const PostUpper = ({ subreddit, posted, id, user, isSaved, isReported, hide, report }) => {
   const dispatch = useDispatch();
   const popId = `postPop-${id}`;
   const isPopVisible = useSelector((state) => state.ui.popups[popId]);
   const popRef = useRef(null);
+
+  const handleHideButton = ()=>{
+    dispatch(hidePost(id));
+  }
+
+  const handleReportButton=()=>{
+    dispatch(toggleReport(id));
+  }
+
+  const handleSaveButton= ()=>{
+    dispatch(toggleSave(id));
+  }
 
   const handleMoreClick = (event) => {
     event.stopPropagation();
@@ -74,31 +87,38 @@ const PostUpper = ({ subreddit, posted, id, user }) => {
             >
               <ul style={{ listStyle: 'none'}}>
                 <li>
-                  <button className={styles.moreButtons} style={{ borderRadius: '10px 10px 0 0' }}>
+                  <button className={styles.moreButtons} style={{ borderRadius: '10px 10px 0 0' }} onClick={handleSaveButton}>
+                    {isSaved?
+                    <>
                     <FontAwesomeIcon
+                      style={{ color: '#149EF5', marginRight: '15px', width: '20px', height: '20px' }}
+                      icon={faSave}
+                    />
+                    <span style={{color: '#149EF5', fontWeight: '600'}}>Saved</span>
+                    </>
+                    :<><FontAwesomeIcon
                       style={{ color: 'white', marginRight: '15px', width: '20px', height: '20px' }}
                       icon={faSave}
                     />
-                    Save
+                    Save</>}
                   </button>
                 </li>
                 <li>
-                  <button className={styles.moreButtons}>
+                  {hide!=='remove'&&(<button className={styles.moreButtons} onClick={handleHideButton}>
                     <FontAwesomeIcon
                       style={{ color: 'white', marginRight: '15px', width: '20px', height: '20px' }}
                       icon={faEyeSlash}
                     />
                     Hide
-                  </button>
+                  </button>)}
                 </li>
                 <li>
-                  <button className={styles.moreButtons} style={{ borderRadius: '0 0 10px 10px' }}>
-                    <FontAwesomeIcon
-                      style={{ color: 'white', marginRight: '15px', width: '20px', height: '20px' }}
-                      icon={faFlag}
-                    />
-                    Report
-                  </button>
+                  {report!=='remove'&&(<button className={styles.moreButtons} style={{ borderRadius: '0 0 10px 10px' }} onClick={handleReportButton}>
+                    {isReported?<><FontAwesomeIcon style={{ color: 'red', marginRight: '15px', width: '20px', height: '20px' }} 
+                    icon={faFlag}
+                    /><span style={{fontWeight: '600', color: 'red'}}>Reported</span></>:
+                    <><FontAwesomeIcon style={{ color: 'white', marginRight: '15px', width: '20px', height: '20px' }} icon={faFlag}/> <span>Report</span></>}
+                  </button>)}
                 </li>
               </ul>
             </div>

@@ -20,8 +20,9 @@
 }
 
 .upButton:hover{
-    background-color: #363a3d;
+    filter: brightness(1.2);
     cursor: pointer;
+    color: #149EF5;
 }
 
 .downButton{
@@ -35,8 +36,41 @@
 }
 
 .downButton:hover{
-    background-color: #363a3d;
+    filter: brightness(1.2);
     cursor: pointer;
+    color:#FF914D
+}
+
+.classOrange{
+    background-color: transparent;
+    border: none;
+    color: #fd6100;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    margin-left: 2px;
+}
+
+.classOrange:hover{
+    filter: brightness(1.2);
+    cursor: pointer;
+    color: white;
+}
+
+.classBlue{
+    background-color: transparent;
+    border: none;
+    color: #005cdd;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    margin-left: 2px;
+}
+
+.classBlue:hover{
+    filter: brightness(1.2);
+    cursor: pointer;
+    color: white;
 }
 
 .commentsButton{

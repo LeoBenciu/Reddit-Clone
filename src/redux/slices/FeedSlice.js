@@ -15,48 +15,70 @@ const initialState = {
     feed: [],
     currentContent: 'r/popular',
     status: 'idle',
-    loading: false,
-    loadingMore: false,
     error: null,
+    savedPosts: [],
 };
 
 const FeedSlice = createSlice({
     name:'FeedSlice',
     initialState,
     reducers:{
-        fetchFeed: (state,action)=>{
-            state.feed = action.payload;
-            state.loading = false;
-            state.error = null;
-        },
-        fetchMoreFeed:(state,action)=>{
-            state.feed = [...state.feed, ...action.payload];
-            state.loadingMore = false;
-            state.error = null;
-        },
-        refreshFeed:(state,action)=>{
-            state.feed = action.payload;
-            state.loading = false;
-            state.error = null;
-        },
-        setLoading:(state,action)=>{
-            state.loading = action.payload;
-        },
-        setLoadingMore:(state,action)=>{
-            state.loadingMore = action.payload;
-        },
-        setError:(state,action)=>{
-            state.error = action.payload;
-        },
-        likePostInFeed:(state,action)=>{
-            const post = state.feed.find(post=> post.id === action.payload);
-            if (post){
-                post.isLiked= true;
-            }
-        },
         setCurrentContent: (state, action) => {
             state.currentContent = action.payload;
           },
+        upvotePost: (state, action) => {
+            const post = state.feed.find(p => p.id === action.payload);
+            if (post) {
+              if (post.userVote === 1) {
+                post.score -= 1;
+                post.userVote = 0;
+              } else {
+                if (post.userVote === -1) {
+                  post.score += 1;
+                }
+                post.score += 1;
+                post.userVote = 1;
+              }
+            }
+        },
+        downvotePost: (state, action) => {
+            const post = state.feed.find(p => p.id === action.payload);
+            if (post) {
+              if (post.userVote === -1) {
+                post.score += 1;
+                post.userVote = 0;
+              } else {
+                if (post.userVote === 1) {
+                  post.score -= 1;
+                }
+                post.score -= 1;
+                post.userVote = -1;
+              }
+            }
+        },
+        hidePost: (state,action)=>{
+            const post = state.feed.find(p=>p.id === action.payload);
+            if(post){
+                post.isVisible = false;
+            }
+        },
+        toggleSave: (state,action)=>{
+            const post = state.feed.find(p=>p.id === action.payload);
+            if(post){
+                post.isSaved = !post.isSaved;
+                if(post.isSaved=== true){
+                    state.savedPosts.unshift(post);
+                }else{
+                    state.savedPosts = state.savedPosts.filter(post=>post.id!== action.payload);
+                };
+            }
+        },
+        toggleReport: (state,action)=>{
+            const post = state.feed.find(p=>p.id === action.payload);
+            if(post){
+                post.isReported = !post.isReported;
+            }
+        },
         },
     extraReducers: (builder)=> {
         builder
@@ -74,15 +96,19 @@ const FeedSlice = createSlice({
                 const j = Math.floor(Math.random() * (i + 1));
                 [shuffledPosts[i], shuffledPosts[j]] = [shuffledPosts[j], shuffledPosts[i]];
                 };
-                state.feed = shuffledPosts;
+                state.feed = shuffledPosts.map(post=>({
+                    ...post,
+                    userVote: 0,
+                    isVisible: true,
+                    isReported: false,
+                    isSaved: false
+                }));
                 state.currentContent = action.meta.arg;
             })
     },
     }
 )
 
-export const { fetchFeed, fetchMoreFeed, setLoading, setLoadingMore, setError, likePostInFeed, refreshFeed, setCurrentContent} = FeedSlice.actions;
+export const { setCurrentContent, upvotePost, downvotePost, hidePost, toggleReport, toggleSave} = FeedSlice.actions;
 export const selectFeed = (state) => state.feed.feed;
-export const selectLoading = (state) => state.feed.loading;
-export const selectCurrentContent = (state)=> state.feed.currentContent;
 export default FeedSlice.reducer;

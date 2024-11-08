@@ -9,6 +9,7 @@ import PopCulturePage from './pages/PopCulturePage';
 import QAndAsPage from './pages/QAndAsPage';
 import TechnologyPage from './pages/TechnologyPage';
 import SubredditPage from './pages/SubredditPage';
+import SavedPostsPage from './pages/SavedPostsPage';
 
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
         <Route path='Movies&TV' element={<MoviesAndTvPage/>}/>
 
         <Route path='r/:subredditName' element={<SubredditPage/>}/>
+        <Route path='Saved-Posts' element={<SavedPostsPage/>}/>
       </Route>
     </Routes>
   );

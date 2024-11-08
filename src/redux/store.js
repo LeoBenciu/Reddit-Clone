@@ -1,5 +1,4 @@
 import {configureStore} from '@reduxjs/toolkit';
-import PostsSlice from './slices/PostsSlice';
 import UiSlice from './slices/UiSlice';
 import UsersSlice from './slices/UsersSlice';
 import FeedSlice from './slices/FeedSlice';
@@ -13,7 +12,6 @@ import SubredditDetailsSlice from './slices/SubredditDetailsSlice';
 
 const store = configureStore({
     reducer: {
-        posts: PostsSlice,
         ui: UiSlice,
         user: UsersSlice,
         comments: CommentsSlice,

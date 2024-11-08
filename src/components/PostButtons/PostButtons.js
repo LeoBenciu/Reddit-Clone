@@ -2,9 +2,20 @@ import React, {useState} from 'react'
 import styles from './PostButtons.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowDown, faArrowUp, faComment, faShare } from '@fortawesome/free-solid-svg-icons'
+import { useDispatch } from 'react-redux'
+import { downvotePost, upvotePost } from '../../redux/slices/FeedSlice'
 
-const PostButtons = ({upVotesMinusDownVotes, numberOfComments,link}) => {
+const PostButtons = ({upVotesMinusDownVotes, numberOfComments,link, postId, userVote}) => {
   const [isCopied, setIsCopied] = useState(false);
+  const dispatch = useDispatch();
+  
+  const handleUpvote = ()=>{
+    dispatch(upvotePost(postId));
+  }
+
+  const handleDownvote = ()=>{
+    dispatch(downvotePost(postId));
+  }
 
   const handleCopyLink = async () => {
     try {
@@ -37,10 +48,10 @@ const PostButtons = ({upVotesMinusDownVotes, numberOfComments,link}) => {
   return (
     <div  className='PostButtons' style={{display: 'flex', flexDirection: 'row', justifyContent:'start', gap: '15px'}}>
     
-      <div className={styles.postButtons}>
-        <button className={styles.upButton}><FontAwesomeIcon icon={faArrowUp} style={{width: '16px', height: '16px'}}/></button>
-        {formattedVotes}
-        <button className={styles.downButton}><FontAwesomeIcon icon={faArrowDown} style={{width: '16px', height: '16px'}}/></button>
+      <div className={styles.postButtons} style={{backgroundColor: userVote === 0? '#23282b': userVote === 1? '#149EF5': '#FF914D'}}>
+        <button className={userVote ===1 ? styles.classBlue: styles.upButton} onClick={handleUpvote} style={{backgroundColor: userVote === 0? '#23282b': userVote === 1? '#149EF5': '#FF914D'}}><FontAwesomeIcon icon={faArrowUp} style={{width: '16px', height: '16px'}}/></button>
+        {formattedVotes + userVote}
+        <button className={userVote ===-1 ? styles.classOrange: styles.downButton}  onClick={handleDownvote} style={{backgroundColor: userVote === 0? '#23282b': userVote === 1? '#149EF5': '#FF914D'}}><FontAwesomeIcon icon={faArrowDown} style={{width: '16px', height: '16px'}}/></button>
       </div>
       <button className={styles.commentsButton}><FontAwesomeIcon icon={faComment} style={{width: '16px', height: '16px'}}/>{formattedComments}</button>
       <button className={styles.shareButton} onClick={handleCopyLink}>{isCopied? ('Link Copied') : (<><FontAwesomeIcon icon={faShare} style={{width: '16px', height: '16px'}}/>Share </>)}</button>

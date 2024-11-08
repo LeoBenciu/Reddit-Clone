@@ -43,9 +43,10 @@ const Feed = ({content}) => {
     <div className='Feed' style={{flex: '2.5', height:'100%', marginRight: '15px', marginBottom: '100px', minWidth: '756px', maxWidth: '756px'}}>
       {feed.map((post,index)=>{
         const imageUrls = extractImageUrls(post.media_metadata);
+        const isVisible = post.isVisible;
 
         return(
-        <div className='Post' key={post.id}>
+        isVisible&&(<div className='Post' key={post.id}>
           <div className='line' style={{width: '100%',
             height: '1px',
             backgroundColor: '#23282b',
@@ -62,9 +63,13 @@ const Feed = ({content}) => {
           video={post.media?.reddit_video ? post.media.reddit_video.fallback_url : ''}
           id={post.id}
           linkTo={post}
-          selfText={post.selftext? post.selftext: '' }>
+          selfText={post.selftext? post.selftext: '' }
+          userVote={post.userVote}
+          isSaved = {post.isSaved}
+          isReported = {post.isReported}
+          >
           </Post>
-        </div>
+        </div>)
       )})}
     </div>
   )
