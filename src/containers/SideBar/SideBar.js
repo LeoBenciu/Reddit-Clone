@@ -4,13 +4,10 @@ import SideBarButton from '../../components/sideBarButton/SideBarButton.js';
 import styles from './SideBar.module.css';
 import { faRocket, faRectangleAd, faCircleInfo, faUserDoctor, faNewspaper, faTv, faGamepad, faWifi, faQuestion, faPhone, faMusic } from '@fortawesome/free-solid-svg-icons';
 import { faBloggerB } from '@fortawesome/free-brands-svg-icons';
+import { useSelector } from 'react-redux';
 
 const SideBar = () => {
-  const recent = [
-    {},
-    {},
-    {},
-  ];
+  const recent = useSelector(state=>state.recentSubreddits.recent)
 
   const topics = [
     {name: 'Internet Culture', icon:faWifi, url: 'Internet-Culture', new: ''},
@@ -34,11 +31,11 @@ const SideBar = () => {
     <div className={styles.hole}>
       <SideBarButton />
       <div className={styles['horizontal-line']} />
-      <SideBarDropdown title='RECENT' />
+      <SideBarDropdown title='RECENT' items={recent} regular={false}/>
       <div className={styles['horizontal-line']} />
-      <SideBarDropdown title='TOPICS' items={topics} />
+      <SideBarDropdown title='TOPICS' items={topics} regular={true}/>
       <div className={styles['horizontal-line']} />
-      <SideBarDropdown title='RESOURCES' items={resources} />
+      <SideBarDropdown title='RESOURCES' items={resources} regular={true}/>
     </div>
   );
 };

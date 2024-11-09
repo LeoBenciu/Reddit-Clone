@@ -5,6 +5,6 @@
 }
 
 .Post:hover{
-    background-color: #1a1c1f;
+    background-color: var(--hover);
     cursor: pointer;
 }

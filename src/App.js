@@ -10,9 +10,20 @@ import QAndAsPage from './pages/QAndAsPage';
 import TechnologyPage from './pages/TechnologyPage';
 import SubredditPage from './pages/SubredditPage';
 import SavedPostsPage from './pages/SavedPostsPage';
-
+import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 
 function App() {
+  const isDarkMode = useSelector(state => state.ui.isDarkMode);
+
+  useEffect(() => {
+    if (isDarkMode) {
+      document.body.classList.add('dark-theme');
+    } else {
+      document.body.classList.remove('dark-theme');
+    }
+  }, [isDarkMode]);
+
   return (
     <Routes>
       <Route path='/' element={<Layout/>}>

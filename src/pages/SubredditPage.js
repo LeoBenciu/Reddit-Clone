@@ -7,6 +7,7 @@ import { setCurrentContent } from '../redux/slices/FeedSlice'
 import SubredditHeader from '../containers/SubredditHeader/SubredditHeader'
 import SecondSubreddit from '../containers/SecondSubreddit/SecondSubreddit'
 import { fetchSubredditDetails } from '../redux/slices/SubredditDetailsSlice'
+import { addSubreddit } from '../redux/slices/recentSubredditsSlice'
 
 const SubredditPage = () => {
 
@@ -16,10 +17,19 @@ const SubredditPage = () => {
 
     useEffect(()=>{
         if(subredditName){
-        dispatch(fetchSubredditDetails(subredditName));
-        dispatch(setCurrentContent(`r/${subredditName}`));
+          
+            dispatch(fetchSubredditDetails(subredditName));
+            dispatch(setCurrentContent(`r/${subredditName}`));
+          
         }
     },[dispatch,subredditName]);
+
+    useEffect(() => {
+      if (subredditName && subredditInfo) {
+          const iconURL = subredditInfo.icon_img;
+          dispatch(addSubreddit({ name: subredditName, iconURL }));
+      }
+  }, [dispatch, subredditName, subredditInfo]);
 
     if(status==='loading'){
         return <p>Loading...</p>

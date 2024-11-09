@@ -7,14 +7,14 @@ const TransparentBackgroundButtons = ({name , icon }) => {
   return (
     <button className={styles.button}>
         <FontAwesomeIcon icon={icon} style={{
-            color: 'white',
+            color: 'var(--text_one)',
             width: '20px',
             height: '20px'
         }}/>
 
         {name&&(
         <p style={{
-            color: 'white',
+            color: 'var(--text_one)',
             margin: '0',
             fontSize: '14px',
             fontWeight: '600'

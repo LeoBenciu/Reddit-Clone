@@ -14,7 +14,7 @@
     flex-direction: column;
     width: 550px;
     height: 660px;
-    background-color: #181C1F;
+    background-color: var(--body_background);
     margin: auto;
     padding: 20px;
     overflow: hidden;
@@ -32,7 +32,7 @@
     width: 40px;
     height: 40px;
     border: none;
-    background-color: #2B3236;
+    background-color:var(--background_three);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -47,4 +47,10 @@
     padding: 0 70px;
     display: flex;
     flex-direction: column;
+}
+
+.iconX{
+    width: 50%;
+    height: 50%;
+    color: var(--text_one);
 }

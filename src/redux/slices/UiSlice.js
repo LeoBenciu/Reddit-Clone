@@ -9,7 +9,7 @@ const initialState = {
         type: '',
         isVisible: false
     },
-    theme: 'light',
+    isDarkMode: true,
     isLoading: false,
     currentPage: 'home',
     popups: {},
@@ -36,8 +36,8 @@ const UiSlice = createSlice({
             state.notification.message= '';
             state.notification.type= '';
         },
-        setTheme:(state,action)=>{
-            state.theme = action.payload;
+        setDarkMode:(state)=>{
+            state.isDarkMode = !state.isDarkMode;
         },
         toggleLoadingSpinner:(state,action)=>{
             state.isLoading = action.payload;
@@ -60,5 +60,5 @@ const UiSlice = createSlice({
     }
 })
 
-export const {toggleSideBar, openPopup, closePopup, setNotification, clearNotification, setTheme, toggleLoadingSpinner, setCurrentPage, toggleSecondary, togglePopup} = UiSlice.actions;
+export const {toggleSideBar, openPopup, closePopup, setNotification, clearNotification, setDarkMode, toggleLoadingSpinner, setCurrentPage, toggleSecondary, togglePopup} = UiSlice.actions;
 export default UiSlice.reducer;

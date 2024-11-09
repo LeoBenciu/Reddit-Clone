@@ -3,16 +3,16 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    background-color: #23282b;
+    background-color: var(--background_three);
     border-radius: 30px;
-    color: white;
+    color: var(--text_one);
     font-size: 12px;
     font-weight: 600;
 }
 .upButton{
     background-color: transparent;
     border: none;
-    color: white;
+    color: var(--text_one);
     border-radius: 50%;
     width: 32px;
     height: 32px;
@@ -28,7 +28,7 @@
 .downButton{
     background-color: transparent;
     border: none;
-    color: white;
+    color: var(--text_one);
     border-radius: 50%;
     width: 32px;
     height: 32px;
@@ -80,9 +80,9 @@
     justify-content: center;
     font-size: 12px;
     text-align: center;
-    background-color: #23282b;
+    background-color: var(--background_three);
     border-radius: 30px;
-    color: white;
+    color: var(--text_one);
     border: none;
     gap: 5px;
     padding: 0 15px;
@@ -90,7 +90,7 @@
 }
 
 .commentsButton:hover{
-    background-color: #363a3d;
+    background-color: var(--hover2);
     cursor: pointer;
 }
 
@@ -101,9 +101,9 @@
     justify-content: center;
     font-size: 12px;
     text-align: center;
-    background-color: #23282b;
+    background-color: var(--background_three);
     border-radius: 30px;
-    color: white;
+    color: var(--text_one);
     border: none;
     gap: 5px;
     padding: 0 15px;
@@ -111,6 +111,6 @@
 }
 
 .shareButton:hover{
-    background-color: #363a3d;
+    background-color: var(--hover2);
     cursor: pointer;
 }

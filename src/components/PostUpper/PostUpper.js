@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import styles from './PostUpper.module.css';
-import poza from '../../resources/poza.jpeg';
+import poza from '../../resources/r.svg';
+import poza2 from '../../resources/r-light.svg'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEllipsis, faEyeSlash, faFlag, faSave } from '@fortawesome/free-solid-svg-icons';
 import { useDispatch, useSelector } from 'react-redux';
@@ -8,11 +9,12 @@ import { closePopup, openPopup } from '../../redux/slices/UiSlice';
 import { formatDistanceToNowStrict } from '../../../node_modules/date-fns/formatDistanceToNowStrict';
 import { hidePost, toggleReport, toggleSave } from '../../redux/slices/FeedSlice';
 
-const PostUpper = ({ subreddit, posted, id, user, isSaved, isReported, hide, report }) => {
+const PostUpper = ({ subreddit, posted, id, isSaved, isReported, hide, report }) => {
   const dispatch = useDispatch();
   const popId = `postPop-${id}`;
   const isPopVisible = useSelector((state) => state.ui.popups[popId]);
   const popRef = useRef(null);
+  const isDarkMode = useSelector(state=>state.ui.isDarkMode);
 
   const handleHideButton = ()=>{
     dispatch(hidePost(id));
@@ -67,8 +69,8 @@ const PostUpper = ({ subreddit, posted, id, user, isSaved, isReported, hide, rep
       }}
     >
       <div className={styles.row}>
-        <img className={styles.subredditImage} src={poza} alt="Subreddit" />
-        <h4 className={styles.subredditName}>{`u/${user}`}</h4>
+        <img className={styles.subredditImage} src={isDarkMode?poza:poza2} alt="Subreddit" />
+        <h4 className={styles.subredditName}>{subreddit}</h4>
         <p className={styles.posted}>
           <span style={{ color: 'transparent' }}>..</span>•<span style={{ color: 'transparent' }}>..</span>
           {timeAgo}
@@ -97,7 +99,7 @@ const PostUpper = ({ subreddit, posted, id, user, isSaved, isReported, hide, rep
                     <span style={{color: '#149EF5', fontWeight: '600'}}>Saved</span>
                     </>
                     :<><FontAwesomeIcon
-                      style={{ color: 'white', marginRight: '15px', width: '20px', height: '20px' }}
+                      style={{ color: 'var(--text_one)', marginRight: '15px', width: '20px', height: '20px' }}
                       icon={faSave}
                     />
                     Save</>}
@@ -106,7 +108,7 @@ const PostUpper = ({ subreddit, posted, id, user, isSaved, isReported, hide, rep
                 <li>
                   {hide!=='remove'&&(<button className={styles.moreButtons} onClick={handleHideButton}>
                     <FontAwesomeIcon
-                      style={{ color: 'white', marginRight: '15px', width: '20px', height: '20px' }}
+                      style={{ color: 'var(--text_one)', marginRight: '15px', width: '20px', height: '20px' }}
                       icon={faEyeSlash}
                     />
                     Hide
@@ -117,7 +119,7 @@ const PostUpper = ({ subreddit, posted, id, user, isSaved, isReported, hide, rep
                     {isReported?<><FontAwesomeIcon style={{ color: 'red', marginRight: '15px', width: '20px', height: '20px' }} 
                     icon={faFlag}
                     /><span style={{fontWeight: '600', color: 'red'}}>Reported</span></>:
-                    <><FontAwesomeIcon style={{ color: 'white', marginRight: '15px', width: '20px', height: '20px' }} icon={faFlag}/> <span>Report</span></>}
+                    <><FontAwesomeIcon style={{ color: 'var(--text_one)', marginRight: '15px', width: '20px', height: '20px' }} icon={faFlag}/> <span>Report</span></>}
                   </button>)}
                 </li>
               </ul>

@@ -1,4 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { loadSavedPostIds, saveSavedPostIds } from "../../utils/localStorage";
+
+const savedPostIds = loadSavedPostIds();
+
 
 export const fetchTheFeed = createAsyncThunk(
     'feed/fetchFeed',
@@ -16,7 +20,6 @@ const initialState = {
     currentContent: 'r/popular',
     status: 'idle',
     error: null,
-    savedPosts: [],
 };
 
 const FeedSlice = createSlice({
@@ -66,11 +69,10 @@ const FeedSlice = createSlice({
             const post = state.feed.find(p=>p.id === action.payload);
             if(post){
                 post.isSaved = !post.isSaved;
-                if(post.isSaved=== true){
-                    state.savedPosts.unshift(post);
-                }else{
-                    state.savedPosts = state.savedPosts.filter(post=>post.id!== action.payload);
-                };
+                const currentSavedPostIds = state.feed
+                    .filter(p=> p.isSaved)
+                    .map(p=> p.id);
+                saveSavedPostIds(currentSavedPostIds);
             }
         },
         toggleReport: (state,action)=>{
@@ -101,7 +103,7 @@ const FeedSlice = createSlice({
                     userVote: 0,
                     isVisible: true,
                     isReported: false,
-                    isSaved: false
+                    isSaved: savedPostIds.includes(post.id),
                 }));
                 state.currentContent = action.meta.arg;
             })

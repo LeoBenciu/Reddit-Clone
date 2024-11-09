@@ -1,5 +1,5 @@
 .content{
-   background-color: black;
+   background-color: var(--secondary);
    border-radius: 10px; 
    padding-bottom: 15px;
    position: sticky;

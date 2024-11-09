@@ -49,7 +49,7 @@ const Feed = ({content}) => {
         isVisible&&(<div className='Post' key={post.id}>
           <div className='line' style={{width: '100%',
             height: '1px',
-            backgroundColor: '#23282b',
+            backgroundColor: 'var(--lines)',
             margin: '4px 0'}}></div>
           <Post
           numberOfComments={post.num_comments} 
@@ -58,11 +58,10 @@ const Feed = ({content}) => {
           subreddit={`r/${post.subreddit}`} 
           title={post.title} 
           images = {imageUrls} 
-          user={post.author}
           image={(post.media_metadata || post.media) ? null : post.url}
           video={post.media?.reddit_video ? post.media.reddit_video.fallback_url : ''}
           id={post.id}
-          linkTo={post}
+          linkTo={post.permalink}
           selfText={post.selftext? post.selftext: '' }
           userVote={post.userVote}
           isSaved = {post.isSaved}

@@ -25,7 +25,7 @@ const Layout = () => {
 
 
   return (
-    <div id='Layout' style={{backgroundColor: '#0F1113', height: '100vh', maxHeight: '100vh', position: 'relative'}}>
+    <div id='Layout' style={{backgroundColor: 'var(--body_background)', height: '100vh', maxHeight: '100vh', position: 'relative'}}>
       <NavBar handleOpenGetAppPopup={handleOpenGetAppPopup} handleOpenLoginPopup={handleOpenLoginPopup} isUserLoggedIn={isUserLoggedIn}/>
 
       {isGetAppPopupOpen&& <GetAppPopup/>}

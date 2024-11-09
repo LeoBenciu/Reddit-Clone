@@ -7,7 +7,7 @@ import backgroundImage from '../resources/backgroundImage.svg'
 const SavedPostsPage = () => {
 
     const dispatch = useDispatch();
-    const savedPosts = useSelector(state=> state.feed.savedPosts);
+    const savedPosts = useSelector(state=> state.feed.feed.filter(p=> p.isSaved));
 
     const extractImageUrls = (mediaMetadata) => {
         if (!mediaMetadata) return [];
@@ -33,12 +33,13 @@ const SavedPostsPage = () => {
       />
 
       <div style={{display: 'flex', flexDirection: "column", height: '100%', paddingTop:'50px', maxWidth: '756px', justifyContent: 'center', margin: '50px auto 100px auto'}}>
-        {savedPosts.map((post,index)=>{
+        {savedPosts.map((post)=>{
 
             const imageUrls = extractImageUrls(post.media_metadata)
 
             return(
             <Post
+            key={post.id}
             numberOfComments={post.num_comments} 
             upVotesMinusDownVotes={post.ups} 
             posted={post.created_utc} 

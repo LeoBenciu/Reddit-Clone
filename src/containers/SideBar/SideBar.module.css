@@ -6,7 +6,7 @@
 .hole{
     width: 265px; 
     min-width: 265px;
-    border-right: solid 1px #393B3C; 
+    border-right: solid 1px var(--lines); 
     padding: 20px; 
     gap: 15px;
     display: flex;

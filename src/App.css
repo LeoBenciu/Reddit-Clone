@@ -14,3 +14,41 @@ ul{
 #root,html, body{
   height: 100%;
 }
+
+:root{
+  --body_background: #fff;
+  --background_two: #23282b;
+  --background_three: #e5ebee;
+  --text_one: black;
+  --rev_text_one: white;
+  --text_two: #3b4245;
+  --text-three: #496e91;
+  --primary_color: #139ef5;
+  --secondary_color: #ff904d;
+  --secondary: #f5f8f9;
+  --hover: #f5f8f9;
+  --hover2: #ffffff;
+  --hover3: #e6e8e8;
+  --logo: #139ef5;
+  --lines: #ccc;
+  --shadow: 'white'
+}
+
+.dark-theme{
+  --body_background: #0f1113;
+  --background_two: #23282b;
+  --background_three: #2a3236;
+  --text_one: white;
+  --rev_text_one: black;
+  --text_two: #c0d2dd;
+  --text-three: #496e91;
+  --primary_color: #139ef5;
+  --secondary_color: #ff904d;
+  --secondary: black;
+  --hover: #1a1c1f;
+  --hover2: #1a1c1f;
+  --hover3: #131417;
+  --logo: white;
+  --lines: #3e4142;
+  --shadow: 'black';
+}

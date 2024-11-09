@@ -22,7 +22,7 @@ const GetAppPopup = () => {
 
         <div className={styles.popupHeader}>
             <h2 style={{
-                color: 'white',
+                color: 'var(--text_one)',
                 fontSize: '30px',
                 margin: '0'
             }}>Get the Reddit app</h2>
@@ -32,25 +32,25 @@ const GetAppPopup = () => {
                 width: '40px',
                 height: '40px',
                 border: 'none',
-                backgroundColor: '#2B3236',
+                backgroundColor: 'var(--background_three)',
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center'
             }}><FontAwesomeIcon icon={faXmark} className={styles.iconX} style={{
                 width: '50%',
                 height: '50%',
-                color: 'white',
+                color: 'var(--text_one)',
 
             }}/></button>
         </div>
 
         <div className={styles.content}>
-            <h4>Scan this QR code to download the app now</h4>
+            <h4 style={{color:'var(--text_one)'}}>Scan this QR code to download the app now</h4>
             <img src={photo} style={{
                 width: '200px',
                 height: '200px'
             }}/>
-            <p>Or check it out in the app stores</p>
+            <p style={{color:'var(--text_one)'}}>Or check it out in the app stores</p>
             <div className={styles.storeButtons}>
                 <a href="https://apps.apple.com/app/reddit/id1064216828" target="_blank" rel="noopener noreferrer">
                     <img src={appStoreBadge} alt="Download on the App Store" style={{ width: '150px', marginRight: '10px' }} />

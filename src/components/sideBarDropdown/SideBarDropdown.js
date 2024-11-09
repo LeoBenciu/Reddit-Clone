@@ -3,9 +3,11 @@ import React, { useState } from 'react';
 import styles from './SideBarDropdown.module.css';
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-const SideBarDropdown = ({ items = [], title }) => {
-    const [isOpen, setIsOpen] = useState(false);
+const SideBarDropdown = ({ items = [], title, regular }) => {
+    console.log('Here: ',items);
+    const [isOpen, setIsOpen] = useState(true);
     const navigate = useNavigate();
 
     const handleDropdown = () => {
@@ -30,7 +32,7 @@ const SideBarDropdown = ({ items = [], title }) => {
                 className={`${styles.dropdownMenu} ${isOpen ? styles.dropdownMenuOpen : ''}`}
                 style={{ listStyleType: 'none' }}
             >
-                {items.map((item, index) => (
+                {regular&&(items.map((item, index) => (
                     <li
                         key={index}
                         onClick={item.new ? () =>handleNavigation(item.url) : ()=>navigate(item.url)}
@@ -42,7 +44,17 @@ const SideBarDropdown = ({ items = [], title }) => {
                         />
                         <p style={{ margin: '11px' }}>{item.name}</p>
                     </li>
-                ))}
+                )))}
+                {!regular&&(
+                    items.map((item, index)=>(
+                        <Link to={`r/${item.name}`} style={{textDecoration: 'none'}}>
+                            <li key={index} className={styles.li}>
+                                <img src={item.iconURL} style={{width: '33px', height: '33px', borderRadius: '50%', border: 'none'}}></img>
+                                <p style={{ margin: '11px' }}>r/{item.name}</p>
+                            </li>
+                        </Link>
+                    ))
+                )}
             </ul>
         </div>
     );

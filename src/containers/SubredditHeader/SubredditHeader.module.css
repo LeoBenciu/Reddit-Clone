@@ -26,7 +26,7 @@
     width: 80px;
     height: 80px;
     border-style: solid;
-    border-color: #0F1113;
+    border-color: var(--body_background);
     border-width: 5px;
     margin-bottom: 15px;
 }
@@ -34,7 +34,7 @@
 .subredditName{
     margin-top: 45px;
     margin-bottom: 0;
-    color: white;
+    color: var(--text_one);
     font-weight: 600;
 }
 

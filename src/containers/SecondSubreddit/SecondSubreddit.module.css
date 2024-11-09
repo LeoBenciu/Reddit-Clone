@@ -1,5 +1,5 @@
 .icons{
-    color: white;
+    color: #72838D;
     width: 16px;
     height: 16px;
     margin-right: .5rem;
@@ -48,7 +48,7 @@
 
 .title{
     margin: 0;
-    color: #c4cacc;
+    color: #72838D;
     font-size: 13px;
 }
 
@@ -76,7 +76,7 @@
 
 
 .markdownContent {
-    color: #d7dadc;
+    color: #72838D;
     font-size: 14px;
     line-height: 1.6;
   }
@@ -87,7 +87,7 @@
   .markdownContent h4,
   .markdownContent h5,
   .markdownContent h6 {
-    color: #ffffff;
+    color: #72838D;
     font-weight: 700;
     margin-top: 16px;
     margin-bottom: 8px;
@@ -114,12 +114,12 @@
 
   .markdownContent p {
     margin: 8px 0;
-    color: #d7dadc;
+    color: #72838D;
   }
   
 
   .markdownContent a {
-    color: white;
+    color: #72838D;
     text-decoration: none;
   }
   
@@ -141,14 +141,14 @@
   .markdownContent blockquote {
     border-left: 4px solid #444;
     padding-left: 12px;
-    color: #aaa;
+    color: #72838D;
     background-color: #222;
     margin: 8px 0;
   }
   
   .markdownContent pre {
     background-color: #2e2e2e;
-    color: #eaeaea;
+    color: #72838D;
     padding: 12px;
     border-radius: 4px;
     overflow-x: auto;
@@ -157,7 +157,7 @@
   
   .markdownContent code {
     background-color: #2e2e2e;
-    color: #eaeaea;
+    color: #72838D;
     padding: 2px 4px;
     border-radius: 4px;
     font-size: 13px;
@@ -173,7 +173,7 @@
   .markdownContent td {
     border: 1px solid #444;
     padding: 8px;
-    color: #d7dadc;
+    color: #72838D;
   }
   
   .markdownContent th {
@@ -185,3 +185,7 @@
     background-color: #2e2e2e;
   }
   
+  hr{
+    border-color: #72838d41;
+    background-color: transparent;
+  }

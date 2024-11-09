@@ -1,5 +1,5 @@
 .btn {
-    color: white;
+    color: var(--text_one);
     display: flex;
     flex-direction: row;
     gap: 1px;
@@ -7,7 +7,7 @@
     padding: 0 15px;
     border-radius: 8px;
     border: none;
-    background-color: #2B3236;
+    background-color: var(--background_three);
   }
 
 .btn:hover {

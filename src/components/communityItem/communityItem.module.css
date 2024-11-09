@@ -1,5 +1,5 @@
 .CommunityItem:hover{
-    background-color: #181919;
+    background-color: var(--hover2);
     cursor: pointer;
 }
 

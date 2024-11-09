@@ -38,11 +38,11 @@ const SecondSubreddit = ({title, description, created,members, membersActive, ma
 
       <div className={styles.bottomRow}>
         <div className={styles.onlineNumber}>
-            <h5 style={{margin: '0', color: 'white',fontSize: '14px'}}>{membersNr}</h5>
+            <h5 style={{margin: '0', color: 'var(--text_one)',fontSize: '14px'}}>{membersNr}</h5>
             <p style={{margin:'0', color: '#979EA1',fontSize: '12px'}}>Members</p>
         </div>
         <div className={styles.onlineNumber}>
-            <h5 style={{margin: '0', color: 'white',fontSize: '14px'}}>{activeMembersNr}</h5>
+            <h5 style={{margin: '0', color: 'var(--text_one)',fontSize: '14px'}}>{activeMembersNr}</h5>
             <p style={{margin:'0', color:'#979EA1',fontSize: '12px', height: '15px'}}><FontAwesomeIcon icon={faCircleDot} style={{color: membersActive>0? 'green': 'red'}}/> Online</p>
         </div>
       </div>

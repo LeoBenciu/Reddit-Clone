@@ -39,26 +39,13 @@ const LoginPopup = ({isUserLoggedIn}) => {
 
         <div className={styles.popupHeader}>
 
-            <button onClick={handleLoginPopupClose} className={styles.buttonX} style={{
-                borderRadius: '50%',
-                width: '40px',
-                height: '40px',
-                border: 'none',
-                backgroundColor: '#2B3236',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center'
-            }}><FontAwesomeIcon icon={faXmark} className={styles.iconX} style={{
-                width: '50%',
-                height: '50%',
-                color: 'white',
-
-            }}/></button>
+            <button onClick={handleLoginPopupClose} className={styles.buttonX}>
+              <FontAwesomeIcon icon={faXmark} className={styles.iconX}/></button>
         </div>
 
         <form className={styles.content} onSubmit={handleSubmitForm}>
-            <h2 style={{color: 'white', fontSize: '23px', margin: '0'}}>Log In</h2>
-            <p style={{color: 'white', fontSize: '14px'}}>By continuing, you agree to our User Agreement and acknowledge that you understand the Privacy Policy.</p>
+            <h2 style={{color: 'var(--text_one)', fontSize: '23px', margin: '0'}}>Log In</h2>
+            <p style={{color: 'var(--text_one)', fontSize: '14px'}}>By continuing, you agree to our User Agreement and acknowledge that you understand the Privacy Policy.</p>
             <ButtonLog icon={faPhone} text="Continue With Phone Number"></ButtonLog>
             <ButtonLog icon={faGoogle} text="Continue With Google"></ButtonLog>
             <ButtonLog icon={faApple} text="Continue With Apple"></ButtonLog>
@@ -74,9 +61,9 @@ const LoginPopup = ({isUserLoggedIn}) => {
 
             <a style={{color: '#149EF5', background: 'transparent', border: 'none', fontSize: '13.5px', marginBottom: '10px', textAlign: 'left', paddingLeft: '0', paddingTop: '10px'}}>Forgot Password?</a>
 
-            <p style={{fontSize: '14.5px', marginTop: '0', marginBottom: '40px', color: 'white'}}>New to Reddit? <a style={{color: '#149EF5'}}>Sign Up</a></p>
+            <p style={{fontSize: '14.5px', marginTop: '0', marginBottom: '40px', color: 'var(--text_one)'}}>New to Reddit? <a style={{color: '#149EF5'}}>Sign Up</a></p>
 
-            <button type='submit' style={{height: '55px', borderRadius: '30px', fontWeight: '600', backgroundColor: isFormFilled ? '#149EF5' :'#2B3236',cursor: isFormFilled? 'pointer' : 'not-allowed', border: 'none', color: isFormFilled? 'white': '#5E6263'}}>Log in</button>
+            <button type='submit' style={{height: '55px', borderRadius: '30px', fontWeight: '600', backgroundColor: isFormFilled ? '#149EF5' :'var(--background_three)',cursor: isFormFilled? 'pointer' : 'not-allowed', border: 'none', color: isFormFilled? 'white': '#5E6263'}}>Log in</button>
         </form>
 
       </div>

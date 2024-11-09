@@ -10,7 +10,7 @@ const Logo = () => {
   return (
     <div className={styles.logo} onClick={()=>navigate('/')}>
       <img src={RedditLogo} alt='reddit-logo' className={styles['logo-image']}></img>
-      <h1 style={{fontSize: '1.7rem', color: 'white'}}>reddit</h1>
+      <h1 style={{fontSize: '1.7rem', color: 'var(--logo)'}}>reddit</h1>
     </div>
   )
 }
