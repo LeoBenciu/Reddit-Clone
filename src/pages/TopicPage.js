@@ -1,40 +1,32 @@
 import React from 'react'
 import SecondaryHomepage from '../containers/ SecondaryHomePage/SecondaryHomepage';
+import Feed from '../containers/Feed/Feed';
+import Secondary from '../containers/Popular/Secondary';
+import TopicHeader from '../containers/TopicHeader/TopicHeader';
+import { useParams } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useDispatch, useSelector} from 'react-redux';
+import { setSearchQuery } from '../redux/slices/SearchSlice2';
+import SearchResults from '../containers/SearchResults/SearchResults';
 
 const TopicPage = () => {
 
-    const {subredditName} = useParams();
+    const {topicName} = useParams();
     const dispatch = useDispatch();
-    const {subredditInfo, status, error} = useSelector(state=> state.subredditDetails);
 
     useEffect(()=>{
-        if(subredditName){
-          
-            dispatch(fetchSubredditDetails(subredditName));
-            dispatch(setCurrentContent(`r/${subredditName}`));
-          
+        if(topicName){
+            dispatch(setSearchQuery(topicName));  
+            console.log('cacatul de topic name', topicName); 
         }
-    },[dispatch,subredditName]);
+    },[dispatch,topicName]);
 
-    useEffect(() => {
-      if (subredditName && subredditInfo) {
-          const iconURL = subredditInfo.icon_img;
-          dispatch(addSubreddit({ name: subredditName, iconURL }));
-      }
-  }, [dispatch, subredditName, subredditInfo]);
-
-    if(status==='loading'){
-        return <p>Loading...</p>
-    }
-    if(status==='failed'){
-        return<p>Error: {error}</p>
-    }
   return (
     <div className='SubredditPage' style={{width: '1088px', padding: '0', boxSizing: 'border-box', height: 'max-content'}}>
       <TopicHeader/>
 
       <div style={{display: 'flex', flexDirection: "row", height: '100%', paddingTop:'50px'}}>
-        <Feed content={`r/${subredditName}`}/>
+        <SearchResults/>
 
         <Secondary content={<SecondaryHomepage/>}/>
 

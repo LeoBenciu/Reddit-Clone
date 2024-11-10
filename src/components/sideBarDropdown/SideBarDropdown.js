@@ -35,7 +35,7 @@ const SideBarDropdown = ({ items = [], title, regular }) => {
                 {regular&&(items.map((item, index) => (
                     <li
                         key={index}
-                        onClick={item.new ? () =>handleNavigation(item.url) : ()=>navigate(item.url)}
+                        onClick={item.new ? () =>handleNavigation(item.url) : ()=>navigate(`t/${item.name}`)}
                         className={styles.li}
                     >
                         <FontAwesomeIcon
