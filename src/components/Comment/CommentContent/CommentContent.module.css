@@ -1,0 +1,9 @@
+.text{
+color: var(--text_two);
+font-size: 14px;
+margin-bottom: 16px;
+}
+
+.text a{
+    color: var(--secondary_color);
+}

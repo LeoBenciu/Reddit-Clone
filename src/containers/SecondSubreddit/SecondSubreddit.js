@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCake, faCircleDot, faGlobe } from '@fortawesome/free-solid-svg-icons'
 import ReactMarkdown from 'react-markdown'
 
-const SecondSubreddit = ({title, description, created,members, membersActive, markdown}) => {
+const SecondSubreddit = ({title = '' ,isPost = false, description = '', created = 0,members = 0, membersActive = 0, markdown =''}, style) => {
 
     const date = new Date(created * 1000);
     const formattedDate = date.toLocaleDateString('en-US', {
@@ -14,6 +14,11 @@ const SecondSubreddit = ({title, description, created,members, membersActive, ma
       });
 
     const transformNumbers = (number)=>{
+
+        if(typeof number !== 'number' || isNaN(number)){
+          return '0';
+        }
+
         if (number > 999999) {
             return `${(number / 1000000).toFixed(1)}M`;
         } else if (number > 999) {
@@ -27,7 +32,7 @@ const SecondSubreddit = ({title, description, created,members, membersActive, ma
     const activeMembersNr = transformNumbers(membersActive);
 
   return (
-    <div style={{height: '830px', overflowY: 'scroll'}}>
+    <div style={style?style:{height: '830px', overflowY: 'scroll'}}>
 
       <div className={styles.description}>
         <h5 className={styles.title}>{title}</h5>
@@ -46,12 +51,16 @@ const SecondSubreddit = ({title, description, created,members, membersActive, ma
             <p style={{margin:'0', color:'#979EA1',fontSize: '12px', height: '15px'}}><FontAwesomeIcon icon={faCircleDot} style={{color: membersActive>0? 'green': 'red'}}/> Online</p>
         </div>
       </div>
-
+    {!isPost&&(
+      <div>
       <div className={styles.separator}></div>
 
       <div className={styles.communityBookmarks}>
         <ReactMarkdown className={styles.markdownContent}>{markdown}</ReactMarkdown>
       </div>
+      </div>
+    )
+    }
 
     </div>
   )

@@ -20,6 +20,7 @@ const initialState = {
     currentContent: 'r/popular',
     status: 'idle',
     error: null,
+    loadMore: true,
 };
 
 const FeedSlice = createSlice({
@@ -81,6 +82,9 @@ const FeedSlice = createSlice({
                 post.isReported = !post.isReported;
             }
         },
+        loadMoreFeed: (state)=>{
+            state.loadMore = true;
+        },
         },
     extraReducers: (builder)=> {
         builder
@@ -93,24 +97,24 @@ const FeedSlice = createSlice({
             })
             .addCase(fetchTheFeed.fulfilled, (state,action)=>{
                 state.status = 'fulfilled';
-                const shuffledPosts = [...action.payload];
-                for (let i = shuffledPosts.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [shuffledPosts[i], shuffledPosts[j]] = [shuffledPosts[j], shuffledPosts[i]];
-                };
-                state.feed = shuffledPosts.map(post=>({
+                const posts = action.payload.map(post=>({
                     ...post,
                     userVote: 0,
                     isVisible: true,
                     isReported: false,
                     isSaved: savedPostIds.includes(post.id),
-                }));
+                }))
+                if(state.loadMore){
+                    state.feed = [...state.feed, ...posts];
+                } else{
+                state.feed = posts};
                 state.currentContent = action.meta.arg;
+                state.loadMore = false;
             })
     },
     }
 )
 
-export const { setCurrentContent, upvotePost, downvotePost, hidePost, toggleReport, toggleSave} = FeedSlice.actions;
+export const { loadMoreFeed,setCurrentContent, upvotePost, downvotePost, hidePost, toggleReport, toggleSave} = FeedSlice.actions;
 export const selectFeed = (state) => state.feed.feed;
 export default FeedSlice.reducer;

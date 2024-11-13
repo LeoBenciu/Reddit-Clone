@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { closePopup, openPopup } from '../../redux/slices/UiSlice';
 import { formatDistanceToNowStrict } from '../../../node_modules/date-fns/formatDistanceToNowStrict';
 import { hidePost, toggleReport, toggleSave } from '../../redux/slices/SearchSlice2';
+import { joinSubreddit, unjoinSubreddit } from '../../redux/slices/SubredditsSlice';
 
 const PostSearchUpper = ({ subreddit, posted, id, isSaved, isReported, hide, report }) => {
   const dispatch = useDispatch();
@@ -15,6 +16,7 @@ const PostSearchUpper = ({ subreddit, posted, id, isSaved, isReported, hide, rep
   const isPopVisible = useSelector((state) => state.ui.popups[popId]);
   const popRef = useRef(null);
   const isDarkMode = useSelector(state=>state.ui.isDarkMode);
+  const joinedList = useSelector(state=> state.subreddits.joinedSubreddits);
 
   const handleHideButton = ()=>{
     dispatch(hidePost(id));
@@ -36,6 +38,14 @@ const PostSearchUpper = ({ subreddit, posted, id, isSaved, isReported, hide, rep
       dispatch(openPopup(popId));
     }
   };
+
+  const handleJoinButton = ()=>{
+    dispatch(joinSubreddit(subreddit));
+  }
+
+  const handleUnjoinButton = () =>{
+    dispatch(unjoinSubreddit(subreddit));
+  }
 
   const handleClickOutside = (event) => {
     if (popRef.current && !popRef.current.contains(event.target)) {
@@ -77,7 +87,8 @@ const PostSearchUpper = ({ subreddit, posted, id, isSaved, isReported, hide, rep
         </p>
       </div>
       <div className={styles.row}>
-        <button className={styles.buttonJoin}>Join</button>
+        {!joinedList.includes(subreddit)&&(<button className={styles.buttonJoin} onClick={handleJoinButton}>Join</button>)}
+        {joinedList.includes(subreddit)&&(<button className={styles.buttonJoin} style={{background: '#139ef5'}} onClick={handleUnjoinButton}>Joined</button>)}
         <div ref={popRef} style={{ position: 'relative' }}>
           <button onClick={handleMoreClick} className={styles.buttonMore}>
             <FontAwesomeIcon icon={faEllipsis} />

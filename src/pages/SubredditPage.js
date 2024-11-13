@@ -17,10 +17,8 @@ const SubredditPage = () => {
 
     useEffect(()=>{
         if(subredditName){
-          
-            dispatch(fetchSubredditDetails(subredditName));
+            dispatch(fetchSubredditDetails(`r/${subredditName}`));
             dispatch(setCurrentContent(`r/${subredditName}`));
-          
         }
     },[dispatch,subredditName]);
 

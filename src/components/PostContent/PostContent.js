@@ -7,11 +7,13 @@ import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons';
 const PostContent = ({ title, video, images = [], image = null, selfText }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const goToNextImage = () => {
+  const goToNextImage = (event) => {
+    event.preventDefault();
     setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
   };
 
-  const goToPrevImage = () => {
+  const goToPrevImage = (event) => {
+    event.preventDefault();
     setCurrentIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
   };
 

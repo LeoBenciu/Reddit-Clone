@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { loadJoinedSubreddits } from "../../utils/localStorage";
 
 export const fetchTheSubreddits = createAsyncThunk(
     'subreddits/fetchSubreddits',
@@ -19,29 +20,20 @@ const initialState = {
     status: 'idle',
     error: null,
     selectedSubreddit: null,
-    subscribedSubreddits: []
+    joinedSubreddits: loadJoinedSubreddits(),
 };
 
 const SubredditsSlice = createSlice({
     name:'SubredditsSlice',
     initialState,
     reducers:{
-        subscribeToSubreddit:(state,action)=>{
-            const subreddit = state.subreddits.find(subreddit=>subreddit.id === action.payload);
-            if (subreddit){
-                subreddit.isSubscribed = true;
-                
-                if (!state.subscribedSubreddits.some(sub=>sub.id === subreddit.id)){
-                    state.subscribedSubreddits.push(subreddit);
-                }
-            }
+        joinSubreddit:(state,action)=>{
+            if(!state.joinedSubreddits.includes(action.payload)){
+            state.joinedSubreddits.push(action.payload);
+        }
         },
-        unsubscribeFromSubreddit: (state,action)=>{
-            const subreddit = state.subreddits.find(subreddit=>subreddit.id === action.payload);
-            if (subreddit){
-                subreddit.isSubscribed = false;
-                state.subscribedSubreddits = state.subscribedSubreddits.filter(subre => subre.id !== subreddit.id);
-            }
+        unjoinSubreddit: (state,action)=>{
+                state.joinedSubreddits = state.joinedSubreddits.filter(s=> s!== action.payload);
         }
     },
     extraReducers: (builder)=>{
@@ -60,5 +52,5 @@ const SubredditsSlice = createSlice({
     },
 })
 
-export const { subscribeToSubreddit, unsubscribeFromSubreddit} = SubredditsSlice.actions;
+export const { joinSubreddit, unjoinSubreddit} = SubredditsSlice.actions;
 export default SubredditsSlice.reducer;

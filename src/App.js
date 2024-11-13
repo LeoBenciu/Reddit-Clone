@@ -7,6 +7,7 @@ import SavedPostsPage from './pages/SavedPostsPage';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import TopicPage from './pages/TopicPage';
+import PostPage from './pages/PostPage/PostPage';
 
 function App() {
   const isDarkMode = useSelector(state => state.ui.isDarkMode);
@@ -24,6 +25,7 @@ function App() {
       <Route path='/' element={<Layout/>}>
         <Route index element={<HomePage/>}/>
         <Route path='r/:subredditName' element={<SubredditPage/>}/>
+        <Route path='/comments/:postId' element={<PostPage/>}/>
         <Route path='Saved-Posts' element={<SavedPostsPage/>}/>
         <Route path='t/:topicName' element={<TopicPage/>}/>
       </Route>

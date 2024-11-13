@@ -3,9 +3,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React from 'react'
 import styles from './transparentBackgroundButton.module.css';
 
-const TransparentBackgroundButtons = ({name , icon }) => {
+const TransparentBackgroundButtons = ({name , icon, onClick }) => {
   return (
-    <button className={styles.button}>
+    <button className={styles.button} onClick={onClick}>
         <FontAwesomeIcon icon={icon} style={{
             color: 'var(--text_one)',
             width: '20px',

@@ -3,7 +3,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 export const fetchSubredditDetails = createAsyncThunk(
     'subredditDetails/fetchSubredditDetails',
     async (subredditName)=>{
-        const response = await fetch(`https://www.reddit.com/r/${subredditName}/about.json`);
+        const response = await fetch(`https://www.reddit.com/${subredditName}/about.json`);
         if(!response.ok){
             throw new Error('We couldn\'t fetch the data for this subreddit');
         }
@@ -33,7 +33,7 @@ const subredditDetailsSlice = createSlice({
             state.error = null;
           })
             .addCase(fetchSubredditDetails.fulfilled, (state, action) => {
-            state.status = "succeeded";
+            state.status = "fulfilled";
             state.subredditInfo = action.payload;
           })
             .addCase(fetchSubredditDetails.rejected, (state, action) => {

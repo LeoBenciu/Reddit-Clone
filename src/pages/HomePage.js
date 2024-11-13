@@ -1,4 +1,4 @@
-import React,{useEffect} from 'react'
+import React,{useEffect, useRef} from 'react'
 import CardsCarousel from '../containers/CardsCarousel/CardsCarousel'
 import Feed from '../containers/Feed/Feed';
 import Secondary from '../containers/Popular/Secondary';

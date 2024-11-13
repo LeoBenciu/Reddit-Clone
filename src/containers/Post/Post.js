@@ -7,10 +7,10 @@ import PostSearchUpper from '../../components/PostSearchUpper/PostSearchUpper';
 import PostSearchButtons from '../../components/PostSearchButtons/PostSearchButtons';
 import { useSelector } from 'react-redux';
 
-const Post = ({numberOfComments, upVotesMinusDownVotes, posted, subreddit, title, selfText, images, image, video, linkTo,id, userVote, isSaved, isReported, hide, report,search}) => {
+const Post = React.memo(({numberOfComments, upVotesMinusDownVotes,onClick, posted, subreddit, title, selfText, images, image, video, linkTo,id, userVote, isSaved, isReported, hide, report,search}) => {
 
   return (
-    <div className={styles.Post} >
+    <div className={styles.Post} onClick={onClick}>
 
     {!search&&(<PostUpper posted={posted} subreddit={subreddit} id={id} isSaved={isSaved} isReported={isReported} hide={hide} report={report}></PostUpper>)}
     {search&&(<PostSearchUpper posted={posted} subreddit={subreddit} id={id} isSaved={isSaved} isReported={isReported} hide={hide} report={report}/>
@@ -42,5 +42,5 @@ const Post = ({numberOfComments, upVotesMinusDownVotes, posted, subreddit, title
     </div>
   )
 }
-
+)
 export default Post;

@@ -6,8 +6,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEllipsis, faEyeSlash, faFlag, faSave } from '@fortawesome/free-solid-svg-icons';
 import { useDispatch, useSelector } from 'react-redux';
 import { closePopup, openPopup } from '../../redux/slices/UiSlice';
-import { formatDistanceToNowStrict } from '../../../node_modules/date-fns/formatDistanceToNowStrict';
+import { formatDistanceToNowStrict } from 'date-fns';
 import { hidePost, toggleReport, toggleSave } from '../../redux/slices/FeedSlice';
+import { joinSubreddit, unjoinSubreddit } from '../../redux/slices/SubredditsSlice';
 
 const PostUpper = ({ subreddit, posted, id, isSaved, isReported, hide, report }) => {
   const dispatch = useDispatch();
@@ -15,27 +16,41 @@ const PostUpper = ({ subreddit, posted, id, isSaved, isReported, hide, report })
   const isPopVisible = useSelector((state) => state.ui.popups[popId]);
   const popRef = useRef(null);
   const isDarkMode = useSelector(state=>state.ui.isDarkMode);
+  const joinedList = useSelector(state=> state.subreddits.joinedSubreddits);
 
-  const handleHideButton = ()=>{
+  const handleHideButton = (event)=>{
+    event.preventDefault();
     dispatch(hidePost(id));
   }
 
-  const handleReportButton=()=>{
+  const handleReportButton=(event)=>{
+    event.preventDefault();
     dispatch(toggleReport(id));
   }
 
-  const handleSaveButton= ()=>{
+  const handleSaveButton= (event)=>{
+    event.preventDefault();
     dispatch(toggleSave(id));
   }
 
   const handleMoreClick = (event) => {
-    event.stopPropagation();
+    event.preventDefault();
     if (isPopVisible) {
       dispatch(closePopup(popId));
     } else {
       dispatch(openPopup(popId));
     }
   };
+
+  const handleJoinButton = (event)=>{
+    event.preventDefault();
+    dispatch(joinSubreddit(subreddit));
+  }
+
+  const handleUnjoinButton = (event) =>{
+    event.preventDefault();
+    dispatch(unjoinSubreddit(subreddit));
+  }
 
   const handleClickOutside = (event) => {
     if (popRef.current && !popRef.current.contains(event.target)) {
@@ -55,7 +70,7 @@ const PostUpper = ({ subreddit, posted, id, isSaved, isReported, hide, report })
   }, [isPopVisible]);
 
   const date = new Date(posted * 1000);
-  const timeAgo = formatDistanceToNowStrict(date, {addSuffix: true});
+  const timeAgo = posted? formatDistanceToNowStrict(date, {addSuffix: true}): '';
 
   return (
     <div
@@ -77,7 +92,8 @@ const PostUpper = ({ subreddit, posted, id, isSaved, isReported, hide, report })
         </p>
       </div>
       <div className={styles.row}>
-        <button className={styles.buttonJoin}>Join</button>
+        {!joinedList.includes(subreddit)&&(<button className={styles.buttonJoin} onClick={handleJoinButton}>Join</button>)}
+        {joinedList.includes(subreddit)&&(<button className={styles.buttonJoin} style={{background: '#139ef5'}} onClick={handleUnjoinButton}>Joined</button>)}
         <div ref={popRef} style={{ position: 'relative' }}>
           <button onClick={handleMoreClick} className={styles.buttonMore}>
             <FontAwesomeIcon icon={faEllipsis} />

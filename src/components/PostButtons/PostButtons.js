@@ -9,19 +9,21 @@ const PostButtons = ({upVotesMinusDownVotes, numberOfComments,linkTo, postId, us
   const [isCopied, setIsCopied] = useState(false);
   const dispatch = useDispatch();
   
-  const handleUpvote = ()=>{
+  const handleUpvote = (event)=>{
+    event.preventDefault();
     dispatch(upvotePost(postId));
   }
 
-  const handleDownvote = ()=>{
+  const handleDownvote = (event)=>{
+    event.preventDefault();
     dispatch(downvotePost(postId));
   }
 
-  const handleCopyLink = async () => {
+  const handleCopyLink = async (event) => {
+    event.preventDefault(); 
     try {
       await navigator.clipboard.writeText(`https://www.reddit.com/${linkTo}`);
       setIsCopied(true);
-
       setTimeout(() => setIsCopied(false), 2000);
     } catch (err) {
       console.error("Failed to copy link: ", err);
