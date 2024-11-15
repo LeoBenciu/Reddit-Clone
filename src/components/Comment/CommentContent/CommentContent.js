@@ -4,7 +4,7 @@ import  ReactMarkdown  from 'react-markdown';
 
 const CommentContent = ({text}) => {
   return (
-      <ReactMarkdown className={styles.text}>{text}</ReactMarkdown>
+      <ReactMarkdown className={styles.text} style={{margin: '0px'}}>{text}</ReactMarkdown>
   )
 }
 

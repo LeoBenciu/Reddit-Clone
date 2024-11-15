@@ -31,6 +31,9 @@ const PostSlice = createSlice({
             state.postDetails = action.payload;
             saveCurrentPostDetails(state.postDetails);
         },
+        addAComment: (state,action)=>{
+            state.comments.unshift(action.payload);
+        }
     }, 
     extraReducers: (builder)=>{
         builder
@@ -48,5 +51,5 @@ const PostSlice = createSlice({
     }
 });
 
-export const {savePostDetails} = PostSlice.actions;
+export const {savePostDetails, addAComment} = PostSlice.actions;
 export default PostSlice.reducer;

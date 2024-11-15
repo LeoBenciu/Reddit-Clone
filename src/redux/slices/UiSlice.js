@@ -56,7 +56,7 @@ const UiSlice = createSlice({
         togglePopup: (state,action)=>{
             const popId = action.payload;
             state.popups[popId] = !state.popups[popId];
-        },
+        }
     }
 })
 

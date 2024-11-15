@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import { setDarkMode } from '../../redux/slices/UiSlice';
 import styles from './NavBar.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { loadSavedPostIds } from '../../utils/localStorage';
 
 
 function NavBar({handleOpenLoginPopup, handleOpenGetAppPopup,isUserLoggedIn}) {

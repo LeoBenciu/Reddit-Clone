@@ -1,7 +1,11 @@
 .text{
 color: var(--text_two);
 font-size: 14px;
-margin-bottom: 16px;
+margin-bottom: 0px;
+}
+
+.text p{
+    margin: 2px 0;
 }
 
 .text a{

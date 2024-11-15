@@ -74,7 +74,7 @@ const PostUpper = ({ subreddit, posted, id, isSaved, isReported, hide, report })
 
   return (
     <div
-      className="BigRow"
+      className="BigRow1"
       style={{
         display: 'flex',
         flexDirection: 'row',

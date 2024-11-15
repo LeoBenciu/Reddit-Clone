@@ -5,16 +5,20 @@ import { faArrowDown, faArrowUp, faComment, faShare } from '@fortawesome/free-so
 import { useDispatch } from 'react-redux'
 import { downvotePost, upvotePost } from '../../redux/slices/SearchSlice2'
 
-const PostSearchButtons = ({upVotesMinusDownVotes, numberOfComments,linkTo, postId, userVote}) => {
+const PostSearchButtons = ({upVotesMinusDownVotes, numberOfComments,linkTo, postId}) => {
   const [isCopied, setIsCopied] = useState(false);
   const dispatch = useDispatch();
+  const [upVote, setUpVote] = useState(false);
+  const [downVote, setDownVote] = useState(false);
   
   const handleUpvote = ()=>{
-    dispatch(upvotePost(postId));
+    setDownVote(false);
+    setUpVote(!upVote);
   }
 
   const handleDownvote = ()=>{
-    dispatch(downvotePost(postId));
+    setUpVote(false);
+    setDownVote(!downVote);
   }
 
   const handleCopyLink = async () => {
@@ -41,7 +45,7 @@ const PostSearchButtons = ({upVotesMinusDownVotes, numberOfComments,linkTo, post
 
   var formattedComments = format(numberOfComments);
   var formattedVotes = format(upVotesMinusDownVotes);
-
+  const userVote = upVote ? 1 : (downVote? -1 : 0);
   
 
 
@@ -53,7 +57,6 @@ const PostSearchButtons = ({upVotesMinusDownVotes, numberOfComments,linkTo, post
         {formattedVotes + userVote}
         <button className={userVote ===-1 ? styles.classOrange: styles.downButton}  onClick={handleDownvote} style={{backgroundColor: userVote === 0? 'var(--background_three)': userVote === 1? '#149EF5': '#FF914D'}}><FontAwesomeIcon icon={faArrowDown} style={{width: '16px', height: '16px'}}/></button>
       </div>
-      <button className={styles.commentsButton}><FontAwesomeIcon icon={faComment} style={{width: '16px', height: '16px'}}/>{formattedComments}</button>
       <button className={styles.shareButton} onClick={handleCopyLink}>{isCopied? ('Link Copied') : (<><FontAwesomeIcon icon={faShare} style={{width: '16px', height: '16px'}}/>Share </>)}</button>
 
     </div>

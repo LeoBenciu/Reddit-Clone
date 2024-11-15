@@ -95,6 +95,7 @@ const Feed = ({content}) => {
           posted={post.created_utc} 
           subreddit={`r/${post.subreddit}`} 
           title={post.title} 
+          search={false}
           images = {imageUrls} 
           image={(post.media_metadata || post.media) ? null : post.url}
           video={post.media?.reddit_video ? post.media.reddit_video.fallback_url : ''}

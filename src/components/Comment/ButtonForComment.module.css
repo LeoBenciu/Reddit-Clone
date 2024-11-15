@@ -22,11 +22,11 @@
 }
 
 .button:hover{
-    background-color: #2B3236;
+    background-color: var(--background_three);
     cursor: pointer;
 }
 
 .buttonRound:hover{
-    background-color: #2B3236;
+    background-color: var(--background_three);
     cursor: pointer;
 }

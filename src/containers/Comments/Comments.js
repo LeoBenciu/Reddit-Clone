@@ -7,8 +7,8 @@ import user from '../../resources/user.png'
 
 const Comments = () => {
 
-    const {comments, status, error} = useSelector(state=> state.post)
-    const isDarkMode = useSelector(state=> state.ui.isDarkMode)
+    const {comments, status, error} = useSelector(state=> state.post);
+    const isDarkMode = useSelector(state=> state.ui.isDarkMode);
 
 
     if(status==='loading'){
@@ -20,10 +20,10 @@ const Comments = () => {
     }
 
   return (
-    <div className='Comments'>
+    <div className='Comments' style={{maxWidth: '756px'}}>
         <ul>
       {comments.map((comment)=>(
-        <li key={comment.id} style={{listStyle: 'none'}}>
+        <li key={comment.id} style={{listStyle: 'none', maxWidth: '100%'}}>
             <Comment
                 user={comment.author}
                 userPicture={isDarkMode? user: userLight}

@@ -1,0 +1,17 @@
+.textarea:focus{
+    outline: none
+}
+
+.textareaBtn{
+    background-color:var(--secondary_color);
+    border: none;
+    border-radius:15px;
+    padding: 7px 10px;
+    font-weight: 600;
+    color: var(--text_one);
+    cursor: pointer
+}
+
+.textareaBtn:hover{
+    filter: brightness(1.2);
+}

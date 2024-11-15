@@ -3,7 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
     comments: [],
     error: null,
-    loading: false
+    loading: false,
+    userComment: '',
 };
 
 const CommentsSlice = createSlice({
@@ -33,12 +34,6 @@ const CommentsSlice = createSlice({
             if (comment) {
                 comment.replies = comment.replies ? [...comment.replies, reply] : [reply];
             }
-        },
-        setError: (state,action)=>{
-            state.error = action.payload;
-        },
-        setIsLoading: (state,action)=>{
-            state.loading = action.payload;
         }
     }
 })

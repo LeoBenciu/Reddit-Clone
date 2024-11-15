@@ -28,6 +28,7 @@ function App() {
         <Route path='/comments/:postId' element={<PostPage/>}/>
         <Route path='Saved-Posts' element={<SavedPostsPage/>}/>
         <Route path='t/:topicName' element={<TopicPage/>}/>
+        <Route path='search/:query' element={<TopicPage search={true}/>}/>
       </Route>
     </Routes>
   );

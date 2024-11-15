@@ -1,0 +1,15 @@
+.hideBtn{
+    width: 16px;
+    height:16px;
+    border:solid 1px #979EA1;
+    border-radius: 50%;
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hideBtn:hover{
+    border: solid 2px var(--text_one);
+    cursor: pointer;
+}
