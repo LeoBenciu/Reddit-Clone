@@ -1,0 +1,21 @@
+#editor .ql-toolbar{
+    background-color: var(--text_one);
+    border: none;
+    
+}
+
+#editor .ql-container{
+    overflow: hidden;
+    max-height: 100%;
+    min-height: 100px;
+    height: max-content;
+    border: none;
+}
+
+#editor .ql-picker-label{
+    color: var(--rev_text_one)!important;
+}
+
+#editor .ql-stroke{
+    color: var(--rev_text_one)!important;
+}

@@ -71,3 +71,21 @@ export const saveCurrentPostDetails = (details)=>{
         console.error('failed to save post details because: ', error);
     }
 };
+
+export const loadRecentSearch = ()=>{
+    try{
+        const serializedData = localStorage.getItem('recentSearch');
+        return serializedData? JSON.parse(serializedData) : [];
+    }catch(error){
+        console.error('failed to load recent searches:', error)
+    }
+};
+
+export const saveRecentSearch = (searches)=>{
+    try{
+        const serializedData = JSON.stringify(searches);
+        localStorage.setItem('recentSearch', serializedData);
+    }catch(error){
+        console.error('failed to save recent searches:', error);
+    }
+};

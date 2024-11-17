@@ -8,6 +8,7 @@ import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import TopicPage from './pages/TopicPage';
 import PostPage from './pages/PostPage/PostPage';
+import CreateAPostPage from './pages/CreateAPostPage/CreateAPostPage';
 
 function App() {
   const isDarkMode = useSelector(state => state.ui.isDarkMode);
@@ -29,6 +30,7 @@ function App() {
         <Route path='Saved-Posts' element={<SavedPostsPage/>}/>
         <Route path='t/:topicName' element={<TopicPage/>}/>
         <Route path='search/:query' element={<TopicPage search={true}/>}/>
+        <Route path='r/:subredditName/create-a-post' element={<CreateAPostPage/>}/>
       </Route>
     </Routes>
   );

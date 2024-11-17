@@ -10,6 +10,7 @@ import PopularSlice from './slices/PopularSlice';
 import SubredditDetailsSlice from './slices/SubredditDetailsSlice';
 import recentSubredditsSlice from './slices/recentSubredditsSlice';
 import PostSlice from './slices/ PostSlice';
+import recentSearch from './slices/RecentSearchSlice';
 
 const store = configureStore({
     reducer: {
@@ -24,6 +25,7 @@ const store = configureStore({
         popular: PopularSlice,
         recentSubreddits: recentSubredditsSlice,
         post: PostSlice,
+        recentSearch: recentSearch,
     },
 });
 

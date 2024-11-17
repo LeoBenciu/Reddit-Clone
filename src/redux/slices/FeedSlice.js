@@ -21,6 +21,7 @@ const initialState = {
     status: 'idle',
     error: null,
     loadMore: true,
+    localPost: [],
 };
 
 const FeedSlice = createSlice({
@@ -85,6 +86,11 @@ const FeedSlice = createSlice({
         loadMoreFeed: (state)=>{
             state.loadMore = true;
         },
+        addPost: (state,action)=>{
+             state.localPost.unshift(action.payload);
+             state.feed.unshift(action.payload);
+
+        }
         },
     extraReducers: (builder)=> {
         builder
@@ -107,14 +113,15 @@ const FeedSlice = createSlice({
                 if(state.loadMore){
                     state.feed = [...state.feed, ...posts];
                 } else{
-                state.feed = posts};
+                    state.feed = [...state.localPost, ...posts];
+            }
                 state.currentContent = action.meta.arg;
                 state.loadMore = false;
-            })
+    })
     },
     }
 )
 
-export const { loadMoreFeed,setCurrentContent, upvotePost, downvotePost, hidePost, toggleReport, toggleSave} = FeedSlice.actions;
+export const { addPost, loadMoreFeed,setCurrentContent, upvotePost, downvotePost, hidePost, toggleReport, toggleSave} = FeedSlice.actions;
 export const selectFeed = (state) => state.feed.feed;
 export default FeedSlice.reducer;

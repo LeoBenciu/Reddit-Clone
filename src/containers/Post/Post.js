@@ -7,7 +7,7 @@ import PostSearchUpper from '../../components/PostSearchUpper/PostSearchUpper';
 import PostSearchButtons from '../../components/PostSearchButtons/PostSearchButtons';
 import { useSelector } from 'react-redux';
 
-const Post = React.memo(({numberOfComments, upVotesMinusDownVotes,onClick, posted, subreddit, title, selfText, images, image, video, linkTo,id, userVote, isSaved, isReported, hide, report,search}) => {
+const Post = React.memo(({numberOfComments, upVotesMinusDownVotes,onClick, posted, subreddit, title, selfText, images, image, video, linkTo,id, userVote, isSaved, isReported, hide, report,search, richText}) => {
 
   return (
     <div className={styles.Post} onClick={onClick}>
@@ -21,7 +21,8 @@ const Post = React.memo(({numberOfComments, upVotesMinusDownVotes,onClick, poste
       selfText={selfText} 
       video={video}
       images={images}
-      image={image}></PostContent>
+      image={image}
+      richText={richText}></PostContent>
 
       {!search&&(<PostButtons 
       upVotesMinusDownVotes={upVotesMinusDownVotes} 

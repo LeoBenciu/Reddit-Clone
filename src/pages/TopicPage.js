@@ -21,7 +21,7 @@ const TopicPage = ({search}) => {
         } else if(query && search){
             dispatch(setSearchQuery(query));
         }
-    },[dispatch,topicName]);
+    },[dispatch,topicName, query]);
   
 
   return (
