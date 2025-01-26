@@ -5,7 +5,7 @@ A React-based frontend application that replicates Reddit's core user interface 
 ## Features
 
 - 👤 User authentication interface
-- 📱 Responsive design matching Reddit's layout
+- 🖥️ Design matching Reddit's layout
 - 🌙 Dark/Light mode toggle
 - 📝 Create and display posts
 - 💬 Nested comments view
