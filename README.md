@@ -1,6 +1,6 @@
 # Reddit Clone (Frontend)
 
-A React-based frontend application that replicates Reddit's core user interface and features. This project focuses on delivering a responsive and intuitive user experience similar to Reddit's web interface.
+A React-based frontend application that replicates Reddit's core user interface and features. This project focuses on delivering an intuitive user experience similar to Reddit's web interface.
 
 ## Features
 
